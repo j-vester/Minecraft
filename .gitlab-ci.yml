@@ -30,3 +30,15 @@ coverage-test:
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml
+
+package-client:
+  stage: package
+  script: mvn clean package
+  only:
+    - merge_requests
+
+deploy-client:
+  stage: deploy
+  script: mvn clean deploy
+  only:
+    - merge_requests
