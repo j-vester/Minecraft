@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+package minecraft.squidsquad;
+
 public class fooTest{
 
     @Test
