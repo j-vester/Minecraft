@@ -1,0 +1,17 @@
+image: maven:3.6.3-jdk-8
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+attempt-build:
+  stage: build
+  script:
+      - mvn clean compile | tee compileStepOutput.txt
+      - cat compileStepOutput.txt | grep -i warning| tee compilerWarnings.txt
+      - if [ $(cat compileStepOutput.txt | grep -i warning | wc -l) -gt 24 ]; then echo -e "\033[0;31m[ERROR]\033[0m Too many compiler warnings!"; false; fi
+    artifacts:
+      paths:
+        - compilerWarnings.txt
