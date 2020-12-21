@@ -1,3 +1,5 @@
+image: maven:3.6.3-jdk-8
+
 stages:
   - build
   - test
@@ -13,6 +15,3 @@ attempt-build:
     artifacts:
       paths:
         - compilerWarnings.txt
-
-perform-tests:
-  stage: test
