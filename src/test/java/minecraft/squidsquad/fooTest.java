@@ -1,6 +1,5 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 package minecraft.squidsquad;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class fooTest{
 
