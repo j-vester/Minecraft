@@ -6,8 +6,6 @@ stages:
   - package
   - deploy
 
-
-
 attempt-build:
   stage: build
   script:
