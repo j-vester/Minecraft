@@ -69,11 +69,10 @@ public class allTest{
     @Test
     public void testArrowCanBeGivenVelocity(){
         Vector velocity = new Vector(2, 3, 0);
-        arrow.setVelocity(velocity);
-        verify(arrow).setVelocity(velocity);
+        when(arrow.getVelocity()).thenReturn(velocity);
         //Verify works, but it doesn't change the actual
         //properties of the object:
-        assertNull(arrow.getVelocity());
+        assertEquals(velocity, arrow.getVelocity());
     }
 
     /////////////////////
