@@ -37,7 +37,7 @@ coverage-test:
 package-client:
   stage: package
   script:
-    - mcn clean compile
+    - mvn clean compile
 #    - mvn clean package
 #  only:
 #    - merge_requests
