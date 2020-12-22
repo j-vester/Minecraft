@@ -2,7 +2,7 @@ package minecraft.squidsquad;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class fooTest{
+public class allTest{
     @Test
     public void testWillPass(){
         int a = 1;
