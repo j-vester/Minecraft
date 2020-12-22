@@ -3,8 +3,8 @@ image: maven:3.6.3-jdk-8
 stages:
   - build
   - test
-#  - package
-#  - deploy
+  - package
+  - deploy
 
 attempt-build:
   stage: build
