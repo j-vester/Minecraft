@@ -15,6 +15,7 @@ attempt-build:
   artifacts:
     paths:
       - compilerWarnings.txt
+      - bin/*
 
 coverage-test:
   stage: test
