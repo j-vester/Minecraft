@@ -34,24 +34,12 @@ coverage-test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-test-job:
-  stage: test
-  script: echo "Hello, world!"
-
-test-job2:
-  stage: package
-  script:
-    - 'echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"'
-
 package-client:
   stage: package
   script:
-#    - echo "Get reck't ye dependency!"
-#    - mvn clean compile
     - mvn clean package
 #  only:
 #    - merge_requests
-
 
 #deploy-client:
 #  stage: deploy
