@@ -35,12 +35,12 @@ coverage-test:
 test-job:
   stage: test
   script:
-    - echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"
+    - 'echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"'
 
 test-job2:
   stage: package
   script:
-    - echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"
+    - 'echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"'
 
 #package-client:
 #  stage: package
