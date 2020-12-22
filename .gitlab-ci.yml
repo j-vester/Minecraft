@@ -6,10 +6,6 @@ stages:
   - package
   - deploy
 
-cache:
-  paths:
-    - target/
-
 attempt-build:
   stage: build
   script:
