@@ -29,6 +29,7 @@ coverage-test:
     paths:
       - target/jacoco.exec
       - target/site/jacoco/
+      - target/surefire-reports/
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml
