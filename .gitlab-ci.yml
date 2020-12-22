@@ -18,6 +18,7 @@ attempt-build:
 
 coverage-test:
   stage: test
+  dependencies: attempt-build
   script:
     - mvn test
     - mvn jacoco:report
