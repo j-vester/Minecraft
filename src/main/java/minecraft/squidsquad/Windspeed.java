@@ -7,4 +7,10 @@ public class Windspeed extends Vector {
         y = 1;
         z = 1;
     }
+
+    public Windspeed(double x, double y, double z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 }
