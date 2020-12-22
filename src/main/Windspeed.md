@@ -1,0 +1,9 @@
+Developer: Sabine Glotzbach
+
+Dependencies: 
+
+Intended Function: This class should produce a Windspeed vector with malleable direction and speed, which can be multiplied with the vectors of flying objects (arrows, TNT) to simulate the effect of wind on their path.
+
+How To Use:
+
+To Do: Test and write the class, find a way to apply it to flying minecraft blocks and/or entities.
