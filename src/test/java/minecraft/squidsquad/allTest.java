@@ -70,10 +70,14 @@ public class allTest{
     public void testArrowCanBeGivenVelocity(){
         Vector velocity = new Vector(2, 3, 0);
         when(arrow.getVelocity()).thenReturn(velocity);
-        //Verify works, but it doesn't change the actual
-        //properties of the object:
         assertEquals(velocity, arrow.getVelocity());
     }
 
+    @Test
+    public void arrowCanInteractWithWind(){
+        Vector velocity = new Vector(2, 3, 0);
+        when(arrow.getVelocity()).thenReturn(velocity);
+        
+    }
     /////////////////////
 }

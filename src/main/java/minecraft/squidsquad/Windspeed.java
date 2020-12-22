@@ -13,4 +13,6 @@ public class Windspeed extends Vector {
         this.y = y;
         this.z = 0;
     }
+
+    
 }
