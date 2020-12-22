@@ -44,8 +44,6 @@ package-client:
     expire_in: never
     paths:
       - packageWarnings.txt
-  only:
-    - merge_requests
 
 #deploy-client:
 #  stage: deploy
