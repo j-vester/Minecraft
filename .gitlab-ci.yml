@@ -36,6 +36,8 @@ coverage-test:
 
 package-client:
   stage: package
+  dependencies:
+    - attempt-build
   script: mvn clean package
 #  only:
 #    - merge_requests
