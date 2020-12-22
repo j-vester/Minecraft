@@ -6,6 +6,10 @@ stages:
   - package
   - deploy
 
+cache:
+  paths:
+    - target/
+
 attempt-build:
   stage: build
   script:
@@ -34,11 +38,12 @@ coverage-test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-#package-client:
-#  stage: package
-#  script: mvn clean package
+package-client:
+  stage: package
+  script: mvn clean package
 #  only:
 #    - merge_requests
+
 
 #deploy-client:
 #  stage: deploy
