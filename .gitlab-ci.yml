@@ -32,12 +32,13 @@ coverage-test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-#package-client:
-#  stage: package
+package-client:
+  stage: package
 #  dependencies:
 #    - attempt-build
 #    - coverage-test
-#  script:
+  script:
+    - echo "Get reck't ye dependency!"
 #    - mvn clean compile
 #    - mvn clean package
 #  only:
