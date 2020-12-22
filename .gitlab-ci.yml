@@ -32,10 +32,9 @@ coverage-test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-#test-job:
-#  stage: test
-#  script:
-#    - 'echo "WHEN THE SEAS BOIL AND THE SERPENTS RAIN THE 13TH HOUR HAS COME"'
+test-job:
+  stage: test
+  script: echo "Hello, world!"
 
 #test-job2:
 #  stage: package
