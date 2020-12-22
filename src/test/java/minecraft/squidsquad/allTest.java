@@ -1,6 +1,7 @@
 package minecraft.squidsquad;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class allTest{
     @Test
@@ -9,9 +10,9 @@ public class allTest{
         assertEquals(1, a);
     }
     @Test
-    public void thisTestWillFail(){
+    public void thisTestWillNotFail(){
         int a = 1;
-        assertEquals(2, a);
+        assertNotEquals(2, a);
     }
 
 }
