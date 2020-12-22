@@ -3,8 +3,21 @@ import org.bukkit.util.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class allTest{
+
+    @Test 
+    public void thisTestWillPass(){
+        int a = 1;
+        assertEquals(1, a);
+    }
+
+    @Test
+    public void thisTestWillNotFail(){
+        int a = 1;
+        assertNotEquals(2, a);
+    }
 
     ////Windspeed tests////
 
@@ -16,18 +29,25 @@ public class allTest{
 
     @Test
     public void vectorIsSettable(){
-        Vector wind = new Windspeed(1,2,3);
+        Vector wind = new Windspeed(1,2);
         assertEquals(1, wind.getX());
         assertEquals(2, wind.getY());
-        assertEquals(3, wind.getZ());
     }
 
     @Test
     public void vectorPropertiesCanBeChanged(){
-        Vector wind = new Windspeed(1,1,1);
+        Vector wind = new Windspeed(1,1);
         assertEquals(1, wind.getX());
         wind.setX(3);
         assertEquals(3, wind.getX());
+    }
+
+    @Test
+    public void vectorZDefaultsToZero(){
+        Vector wind = new Windspeed();
+        Vector setWind = new Windspeed(3, 2);
+        assertEquals(0, wind.getZ());
+        assertEquals(0, setWind.getZ());
     }
 
     /////////////////////
