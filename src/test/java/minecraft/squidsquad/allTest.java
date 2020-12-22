@@ -1,8 +1,10 @@
 package minecraft.squidsquad;
-import static org.junit.jupiter.api.Test;
+import org.bukkit.util.*;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class fooTest{
+public class allTest{
     @Test
     public void testWillPass(){
         int a = 1;
@@ -14,4 +16,13 @@ public class fooTest{
         assertEquals(2, a);
     }
 
+    ////Windspeed tests////
+
+    @Test
+    public void vectorExists(){
+        Vector wind = new Windspeed();
+        assertNotNull(wind);
+    }
+
+    /////////////////////
 }
