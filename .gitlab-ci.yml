@@ -38,7 +38,7 @@ package-client:
   stage: package
   script:
     - mcn clean compile
-    - mvn clean package
+#    - mvn clean package
 #  only:
 #    - merge_requests
 
