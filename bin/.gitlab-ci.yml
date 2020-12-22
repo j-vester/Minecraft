@@ -1,0 +1,44 @@
+image: maven:3.6.3-jdk-8
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+attempt-build:
+  stage: build
+  script:
+      - mvn clean compile | tee compileStepOutput.txt
+      - cat compileStepOutput.txt | grep -i warning| tee compilerWarnings.txt
+      - if [ $(cat compileStepOutput.txt | grep -i warning | wc -l) -gt 24 ]; then echo -e "\033[0;31m[ERROR]\033[0m Too many compiler warnings!"; false; fi
+  artifacts:
+    paths:
+      - compilerWarnings.txt
+
+coverage-test:
+  stage: test
+  script:
+    - mvn test
+    - mvn jacoco:report
+    - "awk -F \",\" '{ instructions += $4 + $5; covered += $5 } END { print covered, \"/\", instructions, \"instructions covered\"; print \"Instructions covered: \"100*covered/instructions, \"%\" }' target/site/jacoco/jacoco.csv"
+  coverage: "/Instructions covered:\\s\\d+\\.*\\d*\\s%/"
+  artifacts:
+    paths:
+      - target/jacoco.exec
+      - target/site/jacoco/
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+package-client:
+  stage: package
+  script: mvn clean package
+  only:
+    - merge_requests
+
+deploy-client:
+  stage: deploy
+  script: mvn clean deploy
+  only:
+    - merge_requests
