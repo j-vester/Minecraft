@@ -18,8 +18,6 @@ attempt-build:
 
 coverage-test:
   stage: test
-  dependencies:
-    - attempt-build
   script:
     - mvn test
     - mvn jacoco:report
@@ -34,14 +32,14 @@ coverage-test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-package-client:
-  stage: package
-  dependencies:
-    - attempt-build
-    - coverage-test
-  script:
-    - mvn clean compile
-    - mvn clean package
+#package-client:
+#  stage: package
+#  dependencies:
+#    - attempt-build
+#    - coverage-test
+#  script:
+#    - mvn clean compile
+#    - mvn clean package
 #  only:
 #    - merge_requests
 
