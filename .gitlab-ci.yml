@@ -44,7 +44,7 @@ package-client:
     expire_in: never
     paths:
       - packageWarnings.txt
-      - *.jar
+      - target/minecraft.plugin.squidsquad-1.0-SNAPSHOT.jar
 
 #deploy-client:
 #  stage: deploy
