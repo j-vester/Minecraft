@@ -36,31 +36,33 @@ public class allTest{
     public void vectorIsSettable(){
         Windspeed wind = new Windspeed(1,2);
         assertEquals(1, wind.getX());
-        assertEquals(2, wind.getY());
+        assertEquals(2, wind.getZ());
     }
 
     @Test
     public void vectorPropertiesCanBeChanged(){
         Windspeed wind = new Windspeed(1,1);
         assertEquals(1, wind.getX());
-        wind.setX(3);
+        assertEquals(1, wind.getZ());
+        wind.changeWindSpeed(3, 4);
         assertEquals(3, wind.getX());
+        assertEquals(4, wind.getZ());
     }
 
     @Test
-    public void vectorZDefaultsToZero(){
+    public void vectorYDefaultsToZero(){
         Windspeed wind = new Windspeed();
         Windspeed setWind = new Windspeed(3, 2);
-        assertEquals(0, wind.getZ());
-        assertEquals(0, setWind.getZ());
+        assertEquals(0, wind.getY());
+        assertEquals(0, setWind.getY());
     }
 
     @Test 
-    public void vectorZCannotBeChanged(){
+    public void vectorYCannotBeChanged(){
         Windspeed wind = new Windspeed();
-        assertEquals(0, wind.getZ());
-        wind.setZ(4);
-        assertEquals(0, wind.getZ());
+        assertEquals(0, wind.getY());
+        wind.setY(4);
+        assertEquals(0, wind.getY());
     }
     
     //Instantiating a mock arrow to be used in tests
