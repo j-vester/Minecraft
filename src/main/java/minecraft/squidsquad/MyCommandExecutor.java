@@ -41,6 +41,7 @@ public class MyCommandExecutor implements CommandExecutor {
         }
         return true;
     }
+    
 
     private boolean handlePing(CommandSender sender, Command command, String label, String[] args) {
         sender.sendMessage("Pong!");
