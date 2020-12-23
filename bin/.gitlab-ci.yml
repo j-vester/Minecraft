@@ -25,17 +25,34 @@ coverage-test:
     - "awk -F \",\" '{ instructions += $4 + $5; covered += $5 } END { print covered, \"/\", instructions, \"instructions covered\"; print \"Instructions covered: \"100*covered/instructions, \"%\" }' target/site/jacoco/jacoco.csv"
   coverage: "/Instructions covered:\\s\\d+\\.*\\d*\\s%/"
   artifacts:
+<<<<<<< HEAD
+    paths:
+      - target/jacoco.exec
+      - target/site/jacoco/
+=======
     expire_in: never
     paths:
       - target/jacoco.exec
       - target/site/jacoco/
       - target/surefire-reports/
+>>>>>>> master
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml
 
 package-client:
   stage: package
+<<<<<<< HEAD
+  script: mvn clean package
+  only:
+    - merge_requests
+
+deploy-client:
+  stage: deploy
+  script: mvn clean deploy
+  only:
+    - merge_requests
+=======
   script:
     - mvn clean package | tee packageStepOutput.txt
     - cat packageStepOutput.txt | grep -i warning| tee packageWarnings.txt
@@ -44,19 +61,11 @@ package-client:
     expire_in: never
     paths:
       - packageWarnings.txt
-      - target/*.jar
+      - target/minecraft.plugin.squidsquad-1.0-SNAPSHOT.jar
 
-deploy-client:
-  before_script:
-    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY_SERVER" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - chmod 700 ~/.ssh
-  stage: deploy
-  script:
-    - mvn clean install
-    - scp target/*.jar santa@kerstproject-server-01:/var/MineCraftPlugins/
-  only:
-    - merge_requests
+#deploy-client:
+#  stage: deploy
+#  script: mvn clean deploy
+#  only:
+#    - merge_requests
+>>>>>>> master
