@@ -1,6 +1,6 @@
 package minecraft.squidsquad;
-import org.bukkit.util.*;
-import org.bukkit.entity.*;
+import org.bukkit.util.Vector;
+import org.bukkit.entity.Arrow;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

@@ -42,7 +42,7 @@ public class MyCommandExecutor implements CommandExecutor {
     };
 
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 2){ //and sender has OP privileges?
+        if (args.length == 2){
             try{
                 int x = Integer.parseInt(args[0]);
                 int z = Integer.parseInt(args[1]);
