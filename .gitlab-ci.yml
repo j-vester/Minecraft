@@ -56,7 +56,6 @@ deploy-client:
     - chmod 700 ~/.ssh
   stage: deploy
   script:
-    - mvn clean install
-    - scp target/*.jar santa@kerstproject-server-01:/var/MineCraftPlugins/
+    - ./BuildAndPushToServer.sh
   only:
     - merge_requests
