@@ -98,10 +98,4 @@ public class allTest{
 
     /////////////////////
 
-    @Test
-    public void thisTestWillFail(){
-        Windspeed wind = new Windspeed();
-        assertNull(wind);
-        
-    }
 }
