@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package nl.sogyo.template;
+=======
+package minecraft.squidsquad;
+>>>>>>> master
 
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -20,20 +20,31 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
+<<<<<<< HEAD
+    <dependencies>
+        <!--Spigot API-->
+=======
 
     <dependencies>
 
+>>>>>>> master
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>${SpigotApiVersion}-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.7.0</version>
+<<<<<<< HEAD
+        </dependency>
+=======
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -57,11 +68,15 @@
           <scope>test</scope>
         </dependency>
 
+>>>>>>> master
     </dependencies>
 
     <build>
         <plugins>
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -71,6 +86,8 @@
                     <target>${JVM}</target>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
+=======
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -82,6 +99,7 @@
                 <version>2.22.2</version>
             </plugin>
 
+>>>>>>> master
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -92,6 +110,10 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+<<<<<<< HEAD
+                    <!-- attached to Maven test phase -->
+=======
+>>>>>>> master
                     <execution>
                      <id>report</id>
                      <phase>test</phase>
@@ -101,7 +123,13 @@
                     </execution>
                 </executions>
             </plugin>
+<<<<<<< HEAD
+        </plugins>
+    </build>
+
+=======
 
         </plugins>
     </build>
+>>>>>>> master
 </project>
