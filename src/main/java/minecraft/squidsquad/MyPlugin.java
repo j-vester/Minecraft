@@ -7,8 +7,9 @@ public class MyPlugin extends JavaPlugin {
 
     private MyPluginListener myPluginListener;
     private MyCommandExecutor myCommandExecutor;
+    public Windspeed wind = new Windspeed(0,0);
 
-    @Override
+        @Override
     public void onLoad() {
         super.onLoad();
 
@@ -23,6 +24,7 @@ public class MyPlugin extends JavaPlugin {
         //Register the Event Listener belonging to this plugin.
         getServer().getPluginManager().registerEvents(myPluginListener, this);
         getCommand("ping").setExecutor(myCommandExecutor);
+        getCommand("setWind").setExecutor(myCommandExecutor);
     }
 
     @Override

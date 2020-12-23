@@ -8,7 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
 
 public class MyPluginListener implements Listener {
@@ -40,10 +39,10 @@ public class MyPluginListener implements Listener {
     }
 
     @EventHandler
-    public void windOnProjectile(EntityShootBowEvent event) {
+    public void onProjectileFired(EntityShootBowEvent event) {
         Projectile projectile = (Projectile)event.getProjectile();
         Vector initialVelocity = projectile.getVelocity();
-        Windspeed wind = new Windspeed(3, 4);
+        Windspeed wind = myPlugin.wind;
         projectile.setVelocity(wind.applyWindToProjectile(initialVelocity));
     }
 }
