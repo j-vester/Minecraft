@@ -49,6 +49,7 @@ public class MyCommandExecutor implements CommandExecutor {
                 plugin.wind.changeWindSpeed(x, z);
             }
             catch (NumberFormatException e){
+                sender.sendMessage("This command requires two integers as x and z values");
                 return false;
             }
             return true;
