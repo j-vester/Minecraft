@@ -11,7 +11,7 @@ attempt-build:
   script:
       - mvn clean compile | tee compileStepOutput.txt
       - cat compileStepOutput.txt | grep -i warning| tee compilerWarnings.txt
-      - if [ $(cat compileStepOutput.txt | grep -i warning | wc -l) -gt 24 ]; then echo -e "\033[0;31m[ERROR]\033[0m Too many compiler warnings!"; false; fi
+      - if [ $(cat compileStepOutput.txt | grep -i warning | wc -l) -gt 4 ]; then echo -e "\033[0;31m[ERROR]\033[0m Too many compiler warnings!"; false; fi
   artifacts:
     expire_in: never
     paths:
@@ -54,9 +54,14 @@ deploy-client:
     - merge_requests
 =======
   script:
-    - mvn clean package
-#  only:
-#    - merge_requests
+    - mvn clean package | tee packageStepOutput.txt
+    - cat packageStepOutput.txt | grep -i warning| tee packageWarnings.txt
+    - if [ $(cat packageStepOutput.txt | grep -i warning | wc -l) -gt 4 ]; then echo -e "\033[0;31m[ERROR]\033[0m Too many packaging warnings!"; false; fi
+  artifacts:
+    expire_in: never
+    paths:
+      - packageWarnings.txt
+      - target/minecraft.plugin.squidsquad-1.0-SNAPSHOT.jar
 
 #deploy-client:
 #  stage: deploy
