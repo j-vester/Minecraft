@@ -1,0 +1,7 @@
+.vscode
+/target
+.settings
+.project
+.classpath
+*.swp
+*.jar
