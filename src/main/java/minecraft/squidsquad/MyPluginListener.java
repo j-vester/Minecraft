@@ -1,9 +1,12 @@
 package minecraft.squidsquad;
 
 import org.bukkit.Bukkit;
+import org.bukkit.util.Vector;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
@@ -34,5 +37,13 @@ public class MyPluginListener implements Listener {
         }else {
             player.setWalkSpeed(0.2f);
         }
+    }
+
+    @EventHandler
+    public void windOnProjectile(EntityShootBowEvent event) {
+        Projectile projectile = (Projectile)event.getProjectile();
+        Vector initialVelocity = projectile.getVelocity();
+        Windspeed wind = new Windspeed(3, 4);
+        projectile.setVelocity(wind.applyWindToProjectile(initialVelocity));
     }
 }
