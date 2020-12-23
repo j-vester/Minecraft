@@ -56,6 +56,6 @@ deploy-client:
     - chmod 700 ~/.ssh
   stage: deploy
   script:
-    - BuildAndPushToServer.sh
+    - ./BuildAndPushToServer.sh
   only:
     - merge_requests
