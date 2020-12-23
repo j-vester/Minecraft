@@ -10,6 +10,9 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.Location;
+import org.bukkit.*;
+import org.bukkit.entity.*;
 
 public class MyPluginListener implements Listener {
 
@@ -37,11 +40,5 @@ public class MyPluginListener implements Listener {
         }else {
             player.setWalkSpeed(0.2f);
         }
-    }
-
-    @EventHandler
-    public void onEntityShootBowEvent(EntityShootBowEvent event){
-        EntitySpawnEvent spawnevent = new EntitySpawnEvent(Monster);
-        event.setProjectile(spawnevent);
     }
 }

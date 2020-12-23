@@ -3,6 +3,12 @@ package nl.sogyo.template;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.EntityType;
+import org.bukkit.*;
 
 public class MyCommandExecutor implements CommandExecutor {
     private final MyPlugin plugin;
@@ -27,6 +33,9 @@ public class MyCommandExecutor implements CommandExecutor {
             case "ping":
                 handlePing(sender, command, label, args);
                 break;
+            case "spmon":
+                spawnMonster(sender, command, label, args);
+                break;
             default:
                 return false;
         }
@@ -35,6 +44,15 @@ public class MyCommandExecutor implements CommandExecutor {
 
     private boolean handlePing(CommandSender sender, Command command, String label, String[] args) {
         sender.sendMessage("Pong!");
+        return true;
+    };
+
+    private boolean spawnMonster(CommandSender sender, Command command, String label, String[] args) {
+        if (sender instanceof Player){
+            Player p = (Player)sender;
+            Location loc = p.getLocation();
+            p.getWorld().spawnEntity(loc, EntityType.DOLPHIN);
+        }
         return true;
     };
 }
