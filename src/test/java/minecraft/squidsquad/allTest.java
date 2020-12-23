@@ -102,5 +102,6 @@ public class allTest{
     public void thisTestWillFail(){
         Windspeed wind = new Windspeed();
         assertNull(wind);
+        
     }
 }
