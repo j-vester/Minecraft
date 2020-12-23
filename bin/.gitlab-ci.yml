@@ -44,10 +44,18 @@ package-client:
     expire_in: never
     paths:
       - packageWarnings.txt
-      - target/minecraft.plugin.squidsquad-1.0-SNAPSHOT.jar
+      - target/*.jar
 
-#deploy-client:
-#  stage: deploy
-#  script: mvn clean deploy
-#  only:
-#    - merge_requests
+deploy-client:
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY_SERVER" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 700 ~/.ssh
+  stage: deploy
+  script:
+    - BuildAndPushToServer.sh
+  only:
+    - merge_requests
