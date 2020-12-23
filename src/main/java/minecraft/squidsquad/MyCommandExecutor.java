@@ -58,7 +58,6 @@ public class MyCommandExecutor implements CommandExecutor {
         }
         return true;
     };
-}
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2){
             int x = 0;
