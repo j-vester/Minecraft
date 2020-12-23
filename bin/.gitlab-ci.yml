@@ -25,34 +25,17 @@ coverage-test:
     - "awk -F \",\" '{ instructions += $4 + $5; covered += $5 } END { print covered, \"/\", instructions, \"instructions covered\"; print \"Instructions covered: \"100*covered/instructions, \"%\" }' target/site/jacoco/jacoco.csv"
   coverage: "/Instructions covered:\\s\\d+\\.*\\d*\\s%/"
   artifacts:
-<<<<<<< HEAD
-    paths:
-      - target/jacoco.exec
-      - target/site/jacoco/
-=======
     expire_in: never
     paths:
       - target/jacoco.exec
       - target/site/jacoco/
       - target/surefire-reports/
->>>>>>> master
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml
 
 package-client:
   stage: package
-<<<<<<< HEAD
-  script: mvn clean package
-  only:
-    - merge_requests
-
-deploy-client:
-  stage: deploy
-  script: mvn clean deploy
-  only:
-    - merge_requests
-=======
   script:
     - mvn clean package | tee packageStepOutput.txt
     - cat packageStepOutput.txt | grep -i warning| tee packageWarnings.txt
@@ -68,4 +51,3 @@ deploy-client:
 #  script: mvn clean deploy
 #  only:
 #    - merge_requests
->>>>>>> master
