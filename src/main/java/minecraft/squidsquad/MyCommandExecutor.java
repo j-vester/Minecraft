@@ -54,6 +54,8 @@ public class MyCommandExecutor implements CommandExecutor {
         if (sender instanceof Player){
             Player p = (Player)sender;
             Location loc = p.getLocation();
+            //World world = p.getWorld();
+            //Dolphin dolphin = world.spawnEntity(loc, Dolphin.class);
             p.getWorld().spawnEntity(loc, EntityType.DOLPHIN);
         }
         return true;
