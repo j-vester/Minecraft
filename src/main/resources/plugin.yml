@@ -1,9 +1,17 @@
-name: TemplatePlugin
+name: AttackPlugin
 version: 1.0-SNAPSHOT
-author: Common Ground
-main: minecraft.arena.MyPlugin
+author: SquidSquad
+main: minecraft.squidsquad.MyPlugin
 api-version: 1.16
 commands:
-   placearena:
-      description: places an arena
-      usage: /placearena width depth height
+   setWind:
+      description: sets a default value for the wind
+      usage: /setWind
+commands:
+   spawnMonster:
+      description: spawns a monster
+      usage: /spm
+#commands:
+#   placearena:
+#      description: places an arena
+#      usage: /placearena width depth height
