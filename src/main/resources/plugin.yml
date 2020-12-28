@@ -4,11 +4,13 @@ author: SquidSquad
 main: minecraft.squidsquad.MyPlugin
 api-version: 1.16
 commands:
+   ping:
+      description: returns pong
+      usage: /ping
    setWind:
       description: sets a default value for the wind
       usage: /setWind
-commands:
-   spawnMonster:
+   spm:
       description: spawns a monster
       usage: /spm
 #commands:
