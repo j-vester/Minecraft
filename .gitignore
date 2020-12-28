@@ -6,3 +6,5 @@
 *.swp
 *.jar
 bin/*
+*foo*
+BuildAndPushToServer.sh
