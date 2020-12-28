@@ -1,0 +1,9 @@
+name: TemplatePlugin
+version: 1.0-SNAPSHOT
+author: Common Ground
+main: minecraft.arena.MyPlugin
+api-version: 1.16
+commands:
+   placearena:
+      description: places an arena
+      usage: /placearena width depth height
