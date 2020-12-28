@@ -27,6 +27,9 @@ public class MyCommandExecutor implements CommandExecutor {
             case "ping":
                 handlePing(sender, command, label, args);
                 break;
+            case "setWind":
+                handleWind(sender, command, label, args);
+                break;
             default:
                 return false;
         }
@@ -37,4 +40,22 @@ public class MyCommandExecutor implements CommandExecutor {
         sender.sendMessage("Pong!");
         return true;
     };
+
+    private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length == 2){
+            int x = 0;
+            int y = 0;
+            try{
+                x = Integer.parseInt(args[0]);
+                y = Integer.parseInt(args[1]);
+
+            }
+            catch (NumberFormatException e){
+                return false;
+            }
+            return true;
+        }
+        
+        return false;
+    }
 }
