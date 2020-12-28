@@ -5,3 +5,4 @@
 .classpath
 *.swp
 *.jar
+bin/*
