@@ -33,7 +33,6 @@ public class ExcaliPurr implements Listener{
                 " & ");
         recipe.setIngredient('@', Material.IRON_INGOT);
         recipe.setIngredient('!', Material.NETHERITE_INGOT);
-        recipe.setIngredient('#', Material.AIR);
         recipe.setIngredient('&', Material.STICK);
         return(recipe);
 	}
