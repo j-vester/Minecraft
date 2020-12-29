@@ -7,7 +7,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Fireball;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Snowball;
 import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
@@ -17,6 +18,8 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.entity.Ocelot;
 
 
 public class MyPluginListener implements Listener {
@@ -86,12 +89,26 @@ public class MyPluginListener implements Listener {
     public void onCatSwordSwing(PlayerInteractEvent event) {
     	if (event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR){
-    		Fireball kittenball = event.getPlayer().launchProjectile(Fireball.class);
-    		kittenball.setIsIncendiary(false);
-    		kittenball.setYield(6);
+    		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
+    		kittenball.setGlowing(true);
+    		kittenball.setBounce(true);
+    		kittenball.setMetadata("isKittenz", new FixedMetadataValue(myPlugin, event.getPlayer().getItemInHand()));
+    		kittenball.setShooter(event.getPlayer());
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
+    	}
+    }
+    
+    public void onKittenBallImpact(ProjectileHitEvent e) {
+    	if(e.getEntity().getMetadata("ïsKittenz").get(0).equals(ExcaliPurr.excaliPurr())) {
+    		Snowball kittenball = (Snowball) e.getEntity();
+    		Location loc = kittenball.getLocation();
+    		World world = kittenball.getWorld();
+            kittenball.remove();
+            Ocelot kitty = (Ocelot) world.spawnEntity(loc, EntityType.OCELOT);
+            // Implement multiple kittens being spawned, preferably shooting lazors.
+            // Implement lightning strike on spawn location.
     	}
     }
 }
