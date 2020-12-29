@@ -1,72 +1,44 @@
 package minecraft.squidsquad;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class ExcaliPurr extends JavaPlugin implements Listener{
+public class ExcaliPurr extends JavaPlugin{
 	
-	Logger excaliPurrLogger = Bukkit.getLogger();
+	public static ItemStack excaliPurr() {
+		ItemStack expurr = new ItemStack(Material.NETHERITE_SWORD);
+		ItemMeta im = expurr.getItemMeta();
+		im.setDisplayName(ChatColor.GREEN + "ExcaliPurr");
+		ArrayList<String> lore = new ArrayList<String>();
+		lore.add("This mythical blade is used to summon mythical creatures!");
+		im.setLore(lore);
+		expurr.setItemMeta(im);
+		return(expurr);
+	}
 	
-	@Override
-    public void onEnable(){
+	public static void registerCatSwordRecipe(String pluginname) {
 		System.out.println("ExcaliPurr from AttackPlugin has been enabled!");
-        Bukkit.getServer().getPluginManager().registerEvents(this, this);
-        getConfig().options().copyDefaults(true);
-        saveDefaultConfig();
-		String excaliPurr = ("ExcaliPurr");
-		ItemStack myItem = new ItemStack(Material.NETHERITE_SWORD);
-		ItemMeta im = myItem.getItemMeta();
-		im.setDisplayName(excaliPurr);
-		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("This mythical blade is used to summon mythical creatures!");
-		myItem.setItemMeta(im);
-        @SuppressWarnings("deprecation")
-		ShapedRecipe hRecipe = new ShapedRecipe(myItem);
-        hRecipe.shape(
-                "#@#",
-                "!@!",
-                "#&#");
-        hRecipe.setIngredient('@', Material.IRON_INGOT);
-        hRecipe.setIngredient('!', Material.NETHERITE_INGOT);
-        hRecipe.setIngredient('#', Material.AIR);
-            Bukkit.getServer().addRecipe(hRecipe);
+		ItemStack expurr = excaliPurr();
+		@SuppressWarnings("deprecation")
+		NamespacedKey key = new NamespacedKey(pluginname, "ExcaliPurr");
+		ShapedRecipe recipe = new ShapedRecipe(key, expurr);
+        recipe.shape(
+                " ! ",
+                " @ ",
+                " & ");
+        recipe.setIngredient('@', Material.IRON_INGOT);
+        recipe.setIngredient('!', Material.NETHERITE_INGOT);
+        recipe.setIngredient('#', Material.AIR);
+        recipe.setIngredient('&', Material.STICK);
+        Bukkit.getServer().addRecipe(recipe);
 	}
-	
-	@Override
-    public void onDisable(){
-            System.out.println("ExcaliPurr from AttackPlugin has been disabled!");
-    }
-	
-	public static void giveCatBlade(Player player) {
-		String excaliPurr = ("ExcaliPurr");
-		ItemStack myItem = new ItemStack(Material.NETHERITE_SWORD);
-		ItemMeta im = myItem.getItemMeta();
-		im.setDisplayName(excaliPurr);
-		ArrayList<String> lore = new ArrayList<String>();
-		lore.add("This mythical blade is used to summon mythical creatures!");
-		myItem.setItemMeta(im);
-		player.sendMessage(ChatColor.RED + "You have been given ExcaliPurr!");
-		player.getInventory().addItem(myItem);
-	}
-	
-	@Override
-	public boolean onCommand(CommandSender theSender, Command cmd, String commandLabel, String[] args){
-		Player player = (Player) theSender;
-		if(commandLabel.equalsIgnoreCase("ExcaliPurr")){
-			ExcaliPurr.giveCatBlade(player);
-		}
-		return true;
-	}
+
 }
