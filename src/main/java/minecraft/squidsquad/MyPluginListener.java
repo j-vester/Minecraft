@@ -1,10 +1,13 @@
 package minecraft.squidsquad;
 
+import java.awt.Desktop.Action;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
@@ -12,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 
@@ -77,4 +81,17 @@ public class MyPluginListener implements Listener {
     	}
     }
     
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void onCatSwordSwing(PlayerInteractEvent event) {
+    	if (event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
+    		&& event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR){
+    		Fireball kittenball = event.getPlayer().launchProjectile(Fireball.class);
+    		kittenball.setIsIncendiary(false);
+    		kittenball.setYield(6);
+    		Vector initialVelocity = kittenball.getVelocity();
+            Windspeed wind = myPlugin.wind;
+            kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
+    	}
+    }
 }
