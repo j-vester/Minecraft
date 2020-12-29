@@ -20,7 +20,6 @@ public class MyPluginListener implements Listener {
     private final MyPlugin myPlugin;
 
     public MyPluginListener(MyPlugin myPlugin) {
-
         this.myPlugin = myPlugin;
     }
 
@@ -29,7 +28,6 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
-        ExcaliPurr.giveCatBlade(event.getPlayer());
     }
 
     @EventHandler
