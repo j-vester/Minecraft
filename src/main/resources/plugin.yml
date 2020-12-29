@@ -7,9 +7,9 @@ commands:
    ping:
       description: returns pong
       usage: /ping
-   setWind:
+   setwind:
       description: sets a default value for the wind
-      usage: /setWind
+      usage: /setwind
    spm:
       description: spawns a monster
       usage: /spm
