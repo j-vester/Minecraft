@@ -12,9 +12,9 @@ public class MyPlugin extends JavaPlugin {
         @Override
     public void onLoad() {
         super.onLoad();
-
         myPluginListener = new MyPluginListener(this);
         myCommandExecutor = new MyCommandExecutor(this);
+        ExcaliPurr.registerCatSwordRecipe("MyPlugin");
     }
 
     @Override
@@ -27,7 +27,6 @@ public class MyPlugin extends JavaPlugin {
         getCommand("setwinddir").setExecutor(myCommandExecutor);
         getCommand("setwindspd").setExecutor(myCommandExecutor);
         getCommand("spm").setExecutor(myCommandExecutor);
-        ExcaliPurr.registerCatSwordRecipe("MyPlugin");
         getCommand("getcatsword").setExecutor(myCommandExecutor);
     }
 
