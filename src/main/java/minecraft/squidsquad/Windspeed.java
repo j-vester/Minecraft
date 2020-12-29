@@ -19,9 +19,10 @@ public class Windspeed extends Vector {
         return newVelocity;
     }
 
-    public void changeWindSpeed(int x, int z){
+    public void changeWindDirection(int x, int z){
         this.x = x;
         this.z = z;
+        this.normalize();
     }
 
     @Override

@@ -65,7 +65,7 @@ public class MyCommandExecutor implements CommandExecutor {
             try{
                 int x = Integer.parseInt(args[0]);
                 int z = Integer.parseInt(args[1]);
-                boolean xInRange = (-1 <= x && x <= 1);
+                /*boolean xInRange = (-1 <= x && x <= 1);
                 boolean zInRange = (-1 <= z && z <= 1);
                 if (xInRange && zInRange){
                     plugin.wind.changeWindSpeed(x, z);
@@ -74,7 +74,9 @@ public class MyCommandExecutor implements CommandExecutor {
                 else{
                     sender.sendMessage("valid values are -1, 0, 1");
                     return false;
-                }
+                }*/
+                plugin.wind.changeWindDirection(x, z);
+                sender.sendMessage("Wind velocity has been set");
             }
             catch (NumberFormatException e){
                 sender.sendMessage("This command requires two integers (-1 or 0 or 1)");
