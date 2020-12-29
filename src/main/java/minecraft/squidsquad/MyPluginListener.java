@@ -7,7 +7,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
@@ -16,7 +15,6 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSprintEvent;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Creeper;
 import org.bukkit.inventory.*;
@@ -26,6 +24,7 @@ import org.bukkit.event.*;
 import org.bukkit.Material;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
+import org.bukkit.entity.Player;
 
 //import minecraft.teamocto.DefenseCreationEvent;
 
@@ -43,18 +42,6 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
-    }
-
-    @EventHandler
-    public void onPlayerToggleSprint(PlayerToggleSprintEvent event) {
-        Player player = event.getPlayer();
-
-        if(event.isSprinting()) {
-            player.setWalkSpeed(0);
-            player.sendMessage("Bad " + player.getName() + "! Sprinting is forbidden!");
-        }else {
-            player.setWalkSpeed(0.2f);
-        }
     }
 
     @EventHandler
