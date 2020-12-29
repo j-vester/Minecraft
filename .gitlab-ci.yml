@@ -58,5 +58,6 @@ deploy-client:
   script:
     - mvn clean install
     - scp target/*.jar santa@kerstproject-server-01:/var/MineCraftPlugins/
+    - ssh santa@10.10.4.233 -T "touch /var/MineCraftPlugins/*.jar"
   only:
     - merge_requests
