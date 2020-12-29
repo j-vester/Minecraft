@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
@@ -49,7 +50,27 @@ public class MyPluginListener implements Listener {
             tnt.setFuseTicks(0);
             float radius = tnt.getYield();
             tnt.setYield(radius/3);
-            arrow.remove();
+    	} else if (e.getEntity() instanceof SpectralArrow) {
+    		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
+    		Location locmid = sparrow.getLocation();
+    		World world = sparrow.getWorld();
+    		sparrow.remove();
+    		Location locnorth = new Location(world,locmid.getX()+5,locmid.getY(),locmid.getZ());
+    		Location loceast = new Location(world,locmid.getX(),locmid.getY(),locmid.getZ()+5);
+    		Location locsouth = new Location(world,locmid.getX()-5,locmid.getY(),locmid.getZ());
+    		Location locwest = new Location(world,locmid.getX(),locmid.getY(),locmid.getZ()-5);
+    		TNTPrimed tntmid = (TNTPrimed) world.spawn(locmid, TNTPrimed.class);
+    		TNTPrimed tntnorth = (TNTPrimed) world.spawn(locnorth, TNTPrimed.class);
+    		TNTPrimed tnteast = (TNTPrimed) world.spawn(loceast, TNTPrimed.class);
+    		TNTPrimed tntsouth = (TNTPrimed) world.spawn(locsouth, TNTPrimed.class);
+    		TNTPrimed tntwest = (TNTPrimed) world.spawn(locwest, TNTPrimed.class);
+    		tntmid.setFuseTicks(0);
+    		float radius = tntmid.getYield();
+    		tntmid.setYield(radius/2);
+    		tntnorth.setYield(radius/3);
+    		tnteast.setYield(radius/3);
+    		tntsouth.setYield(radius/3);
+    		tntwest.setYield(radius/3);
     	}
     }
     
