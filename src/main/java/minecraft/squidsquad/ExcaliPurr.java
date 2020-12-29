@@ -25,7 +25,7 @@ public class ExcaliPurr implements Listener{
 	public static ShapedRecipe catSwordRecipe() {
 		ItemStack expurr = excaliPurr();
 		@SuppressWarnings("deprecation")
-		NamespacedKey key = new NamespacedKey("squidsquad", "ExcaliPurr");
+		NamespacedKey key = new NamespacedKey("squidsquad", "excalipurr");
 		ShapedRecipe recipe = new ShapedRecipe(key, expurr);
         recipe.shape(
                 " ! ",
