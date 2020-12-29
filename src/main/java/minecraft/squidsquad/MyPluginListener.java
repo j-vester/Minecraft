@@ -15,6 +15,9 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
+import org.bukkit.entity.EntityType;
+
+import minecraft.teamocto.DefenseCreationEvent;
 
 public class MyPluginListener implements Listener {
 
@@ -69,6 +72,13 @@ public class MyPluginListener implements Listener {
     		//Spawn Creeper?
     	 */
     	}
+    }
+
+    @EventHandler
+    public void onDefenseCreated(DefenseCreationEvent e){
+        Location loc = e.getLocation();
+        World world = e.getWorld();
+        world.spawnEntity(loc, EntityType.CREEPER);
     }
     
 }
