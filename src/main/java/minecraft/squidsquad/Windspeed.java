@@ -26,6 +26,7 @@ public class Windspeed extends Vector {
     }
 
     public void changeWindSpeed(int modifier){
+        this.normalize();
         this.multiply(modifier);
     }
 
