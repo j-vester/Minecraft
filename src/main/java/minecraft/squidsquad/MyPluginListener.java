@@ -48,6 +48,7 @@ public class MyPluginListener implements Listener {
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(1);
+            tnt.setYield(tnt.getYield()/2);
             arrow.remove();
     	/*} else if (e.getEntity() instanceof Snowball) {
     		Snowball snow = (Snowball) e.getEntity();
