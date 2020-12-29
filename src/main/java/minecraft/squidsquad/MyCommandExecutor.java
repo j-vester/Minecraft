@@ -62,14 +62,13 @@ public class MyCommandExecutor implements CommandExecutor {
     };
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2){
-            int x = 0;
-            int y = 0;
             try{
-                x = Integer.parseInt(args[0]);
-                y = Integer.parseInt(args[1]);
-
+                int x = Integer.parseInt(args[0]);
+                int z = Integer.parseInt(args[1]);
+                plugin.wind.changeWindSpeed(x, z);
             }
             catch (NumberFormatException e){
+                sender.sendMessage("This command requires two integers as x and z values");
                 return false;
             }
             return true;
