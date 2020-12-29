@@ -65,6 +65,10 @@ public class MyPluginListener implements Listener {
     		TNTPrimed tntsouth = (TNTPrimed) world.spawn(locsouth, TNTPrimed.class);
     		TNTPrimed tntwest = (TNTPrimed) world.spawn(locwest, TNTPrimed.class);
     		tntmid.setFuseTicks(0);
+    		tntnorth.setFuseTicks(40);
+    		tnteast.setFuseTicks(40);
+    		tntsouth.setFuseTicks(40);
+    		tntwest.setFuseTicks(40);
     		float radius = tntmid.getYield();
     		tntmid.setYield(radius/2);
     		tntnorth.setYield(radius/3);
