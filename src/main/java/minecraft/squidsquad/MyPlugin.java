@@ -7,8 +7,9 @@ public class MyPlugin extends JavaPlugin {
 
     private MyPluginListener myPluginListener;
     private MyCommandExecutor myCommandExecutor;
+    public Windspeed wind = new Windspeed(0,0);
 
-    @Override
+        @Override
     public void onLoad() {
         super.onLoad();
 
