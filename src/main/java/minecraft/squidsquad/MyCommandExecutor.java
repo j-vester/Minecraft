@@ -55,7 +55,12 @@ public class MyCommandExecutor implements CommandExecutor {
             Player p = (Player)sender;
             Location loc = p.getLocation();
             World world = p.getWorld();
+<<<<<<< HEAD
             world.spawnEntity(loc, EntityType.CREEPER);
+=======
+            //Creeper creeper = world.spawnEntity(loc, Creeper.class);
+            //p.getWorld().spawnEntity(loc, EntityType.DOLPHIN);
+>>>>>>> master
         }
         return true;
     };
