@@ -66,14 +66,15 @@ public class MyCommandExecutor implements CommandExecutor {
                 int x = Integer.parseInt(args[0]);
                 int z = Integer.parseInt(args[1]);
                 plugin.wind.changeWindSpeed(x, z);
+                sender.sendMessage("Wind velocity has been set");
             }
             catch (NumberFormatException e){
-                sender.sendMessage("This command requires two integers as x and z values");
+                sender.sendMessage("This command requires integers");
                 return false;
             }
             return true;
         }
-        
+        sender.sendMessage("This command requires two integers as x and z values");
         return false;
     }
 }
