@@ -14,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSprintEvent;
+
 
 public class MyPluginListener implements Listener {
 
@@ -30,18 +30,6 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
-    }
-
-    @EventHandler
-    public void onPlayerToggleSprint(PlayerToggleSprintEvent event) {
-        Player player = event.getPlayer();
-
-        if(event.isSprinting()) {
-            player.setWalkSpeed(0);
-            player.sendMessage("Bad " + player.getName() + "! Sprinting is forbidden!");
-        }else {
-            player.setWalkSpeed(0.2f);
-        }
     }
 
     @EventHandler
