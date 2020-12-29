@@ -36,7 +36,7 @@ public class MyCommandExecutor implements CommandExecutor {
             case "spm":
                 spawnMonster(sender, command, label, args);
                 break;
-            case "setWind":
+            case "setwind":
                 handleWind(sender, command, label, args);
                 break;
             default:
@@ -60,6 +60,7 @@ public class MyCommandExecutor implements CommandExecutor {
         }
         return true;
     };
+
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2){
             try{
