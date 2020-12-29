@@ -16,6 +16,9 @@ commands:
    spm:
       description: spawns a monster
       usage: /spm
+   getcatsword:
+      description: Summons the great ExcaliPurr, that you may whisker away your enemies!
+      usage: /getcatsword
 #commands:
 #   placearena:
 #      description: places an arena

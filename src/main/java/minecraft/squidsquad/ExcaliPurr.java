@@ -1,17 +1,15 @@
 package minecraft.squidsquad;
 
 import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.event.Listener;
 
-public class ExcaliPurr extends JavaPlugin{
+public class ExcaliPurr implements Listener{
 	
 	public static ItemStack excaliPurr() {
 		ItemStack expurr = new ItemStack(Material.NETHERITE_SWORD);
@@ -24,11 +22,10 @@ public class ExcaliPurr extends JavaPlugin{
 		return(expurr);
 	}
 	
-	public static void registerCatSwordRecipe(String pluginname) {
-		System.out.println("ExcaliPurr from AttackPlugin has been enabled!");
+	public static ShapedRecipe catSwordRecipe() {
 		ItemStack expurr = excaliPurr();
 		@SuppressWarnings("deprecation")
-		NamespacedKey key = new NamespacedKey(pluginname, "ExcaliPurr");
+		NamespacedKey key = new NamespacedKey("Squid-squad", "ExcaliPurr");
 		ShapedRecipe recipe = new ShapedRecipe(key, expurr);
         recipe.shape(
                 " ! ",
@@ -38,7 +35,7 @@ public class ExcaliPurr extends JavaPlugin{
         recipe.setIngredient('!', Material.NETHERITE_INGOT);
         recipe.setIngredient('#', Material.AIR);
         recipe.setIngredient('&', Material.STICK);
-        Bukkit.getServer().addRecipe(recipe);
+        return(recipe);
 	}
 
 }
