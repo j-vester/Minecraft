@@ -1,14 +1,19 @@
 package minecraft.squidsquad;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Snowball;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
 
 public class MyPluginListener implements Listener {
@@ -40,10 +45,30 @@ public class MyPluginListener implements Listener {
     }
 
     @EventHandler
-    public void windOnProjectile(EntityShootBowEvent event) {
+    public void onProjectileFired(EntityShootBowEvent event) {
         Projectile projectile = (Projectile)event.getProjectile();
         Vector initialVelocity = projectile.getVelocity();
-        Windspeed wind = new Windspeed(3, 4);
+        Windspeed wind = myPlugin.wind;
         projectile.setVelocity(wind.applyWindToProjectile(initialVelocity));
     }
+    
+    @EventHandler 
+    public void onShoot(ProjectileHitEvent e){
+    	if (e.getEntity() instanceof Arrow) {
+    		Arrow arrow = (Arrow) e.getEntity();
+            Location loc = arrow.getLocation();
+            World world = arrow.getWorld();
+            arrow.remove();
+            TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
+            tnt.setFuseTicks(1);
+            arrow.remove();
+    	/*} else if (e.getEntity() instanceof Snowball) {
+    		Snowball snow = (Snowball) e.getEntity();
+    		Location loc = snow.getLocation();
+    		World world = snow.getWorld();
+    		//Spawn Creeper?
+    	 */
+    	}
+    }
+    
 }

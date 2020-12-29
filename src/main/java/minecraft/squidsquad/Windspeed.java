@@ -4,14 +4,14 @@ import org.bukkit.util.Vector;
 public class Windspeed extends Vector {
     public Windspeed(){
         x = 1;
-        y = 1;
-        z = 0;
+        y = 0;
+        z = 1;
     }
 
-    public Windspeed(double x, double y){
+    public Windspeed(int x, int z){
         this.x = x;
-        this.y = y;
-        this.z = 0;
+        this.y = 0;
+        this.z = z;
     }
 
     public Vector applyWindToProjectile(Vector initialVelocity){
@@ -19,18 +19,23 @@ public class Windspeed extends Vector {
         return newVelocity;
     }
 
+    public void changeWindSpeed(int x, int z){
+        this.x = x;
+        this.z = z;
+    }
+
     @Override
-    public Vector setZ(double Z){
+    public Vector setY(double y){
         return this;
     }
 
     @Override
-    public Vector setZ(int Z){
+    public Vector setY(int y){
         return this;
     }
 
     @Override
-    public Vector setZ(float Z){
+    public Vector setY(float y){
         return this;
     }
 
