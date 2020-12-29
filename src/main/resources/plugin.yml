@@ -8,7 +8,7 @@ commands:
       description: sets a default value for the wind
       usage: /setWind
 commands:
-   spawnMonster:
+   spm:
       description: spawns a monster
       usage: /spm
 #commands:
