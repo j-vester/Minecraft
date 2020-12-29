@@ -3,12 +3,10 @@ package minecraft.squidsquad;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.EntityType;
-import org.bukkit.*;
+
 
 public class MyCommandExecutor implements CommandExecutor {
     private final MyPlugin plugin;
@@ -62,20 +60,29 @@ public class MyCommandExecutor implements CommandExecutor {
     };
 
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
+        
         if (args.length == 2){
             try{
                 int x = Integer.parseInt(args[0]);
                 int z = Integer.parseInt(args[1]);
-                plugin.wind.changeWindSpeed(x, z);
-                sender.sendMessage("Wind velocity has been set");
+                boolean xInRange = (-1 <= x && x <= 1);
+                boolean zInRange = (-1 <= z && z <= 1);
+                if (xInRange && zInRange){
+                    plugin.wind.changeWindSpeed(x, z);
+                    sender.sendMessage("Wind velocity has been set");
+                }
+                else{
+                    sender.sendMessage("valid values are -1, 0, 1");
+                    return false;
+                }
             }
             catch (NumberFormatException e){
-                sender.sendMessage("This command requires integers");
+                sender.sendMessage("This command requires two integers (-1 or 0 or 1)");
                 return false;
             }
             return true;
         }
-        sender.sendMessage("This command requires two integers as x and z values");
+        sender.sendMessage("This command requires two integers between -1 and 1 as x and z values");
         return false;
     }
 }
