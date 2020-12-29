@@ -61,12 +61,8 @@ public class MyPluginListener implements Listener {
             World world = arrow.getWorld();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(0);
-    	/*} else if (e.getEntity() instanceof Snowball) {
-    		Snowball snow = (Snowball) e.getEntity();
-    		Location loc = snow.getLocation();
-    		World world = snow.getWorld();
-    		//Spawn Creeper?
-    	 */
+            tnt.setYield(tnt.getYield()/2);
+            arrow.remove();
     	}
     }
     
