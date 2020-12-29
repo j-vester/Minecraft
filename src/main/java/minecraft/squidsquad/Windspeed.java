@@ -25,6 +25,10 @@ public class Windspeed extends Vector {
         this.normalize();
     }
 
+    public void changeWindSpeed(int modifier){
+        this.multiply(modifier);
+    }
+
     @Override
     public Vector setY(double y){
         return this;

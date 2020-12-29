@@ -34,8 +34,11 @@ public class MyCommandExecutor implements CommandExecutor {
             case "spm":
                 spawnMonster(sender, command, label, args);
                 break;
-            case "setwind":
-                handleWind(sender, command, label, args);
+            case "setwinddir":
+                handleWindDirection(sender, command, label, args);
+                break;
+            case "setwindspd":
+                handleWindSpeed(sender, command, label, args);
                 break;
             default:
                 return false;
@@ -59,8 +62,24 @@ public class MyCommandExecutor implements CommandExecutor {
         return true;
     };
 
-    private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
-        
+    private boolean handleWindSpeed(CommandSender sender, Command command, String label, String[] args){
+        if (args.length == 1){
+            try{
+                int speedModifier = Integer.parseInt(args[0]);
+                plugin.wind.changeWindSpeed(speedModifier);
+                sender.sendMessage("Windspeed has been modified!");
+            }
+            catch (NumberFormatException e){
+                sender.sendMessage("This command requires an integer!");
+                return false;
+            }
+            return true;
+        }
+        sender.sendMessage("This command requires one integer as argument!");
+        return false;
+    }
+    
+    private boolean handleWindDirection(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2){
             try{
                 int x = Integer.parseInt(args[0]);
@@ -76,15 +95,15 @@ public class MyCommandExecutor implements CommandExecutor {
                     return false;
                 }*/
                 plugin.wind.changeWindDirection(x, z);
-                sender.sendMessage("Wind velocity has been set");
+                sender.sendMessage("Wind velocity has been set!");
             }
             catch (NumberFormatException e){
-                sender.sendMessage("This command requires two integers (-1 or 0 or 1)");
+                sender.sendMessage("This command requires two integers");
                 return false;
             }
             return true;
         }
-        sender.sendMessage("This command requires two integers between -1 and 1 as x and z values");
+        sender.sendMessage("This command requires exactly two integers");
         return false;
     }
 }
