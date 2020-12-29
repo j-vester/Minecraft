@@ -47,7 +47,8 @@ public class MyPluginListener implements Listener {
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(0);
-            tnt.setYield(tnt.getYield()/3);
+            float radius = tnt.getYield();
+            tnt.setYield(radius/2);
             arrow.remove();
     	}
     }
