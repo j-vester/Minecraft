@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.*;
 
@@ -55,12 +56,9 @@ public class MyCommandExecutor implements CommandExecutor {
             Player p = (Player)sender;
             Location loc = p.getLocation();
             World world = p.getWorld();
-<<<<<<< HEAD
             world.spawnEntity(loc, EntityType.CREEPER);
-=======
-            //Creeper creeper = world.spawnEntity(loc, Creeper.class);
-            //p.getWorld().spawnEntity(loc, EntityType.DOLPHIN);
->>>>>>> master
+            Creeper creeper = (Creeper)world.spawnEntity(loc, EntityType.CREEPER);
+            creeper.explode();
         }
         return true;
     };

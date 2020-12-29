@@ -1,5 +1,7 @@
 package minecraft.squidsquad;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -7,17 +9,25 @@ import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Creeper;
+import org.bukkit.inventory.*;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.event.*;
+import org.bukkit.Material;
+import org.bukkit.event.Event.Result;
+import org.bukkit.event.block.Action;
 
-import minecraft.teamocto.DefenseCreationEvent;
+//import minecraft.teamocto.DefenseCreationEvent;
 
 public class MyPluginListener implements Listener {
 
@@ -75,10 +85,26 @@ public class MyPluginListener implements Listener {
     }
 
     @EventHandler
-    public void onDefenseCreated(DefenseCreationEvent e){
-        Location loc = e.getLocation();
-        World world = e.getWorld();
-        world.spawnEntity(loc, EntityType.CREEPER);
+    public void onDefenseCreated(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+        Inventory inv = p.getInventory();
+        Material material = Material.GOLDEN_PICKAXE;
+        Boolean fulfilledConditionsToCreateShield = (e.useInteractedBlock() != Result.DENY) && (e.getHand() == EquipmentSlot.HAND) && (p.getInventory().getItemInMainHand().getType() == material) && (e.getAction() == Action.RIGHT_CLICK_BLOCK);
+        Boolean enoughGlassPanelsInInventory = inv.contains(Material.GLASS_PANE, 9);
+        if (fulfilledConditionsToCreateShield && enoughGlassPanelsInInventory){
+            Location loc = e.getPlayer().getLocation();
+            World world = loc.getWorld();
+            // Creating custom location
+            Random x = new Random();
+            Random y = new Random();
+            double randomX = -5 + (5 - - 5)* x.nextDouble();
+            double randomY = -5 + (5 - - 5)* y.nextDouble();
+            Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY()+randomY, loc.getZ());
+            //Spawn creeper
+            Creeper creeper = (Creeper)world.spawnEntity(spawnloc, EntityType.CREEPER);
+            creeper.setHealth(1);
+            creeper.setMaxFuseTicks(100);
+            creeper.ignite();
+        }
     }
-    
 }
