@@ -15,6 +15,7 @@ public class ExcaliPurr implements Listener{
 		ItemStack expurr = new ItemStack(Material.NETHERITE_SWORD);
 		ItemMeta im = expurr.getItemMeta();
 		im.setDisplayName(ChatColor.GREEN + "ExcaliPurr");
+		im.setUnbreakable(true);
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add("This mythical blade is used to summon mythical creatures!");
 		im.setLore(lore);
