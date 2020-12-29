@@ -29,6 +29,7 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
+        ExcaliPurr.giveCatBlade(event.getPlayer());
     }
 
     @EventHandler
