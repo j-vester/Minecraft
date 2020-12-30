@@ -69,8 +69,6 @@ public class MyPluginListener implements Listener {
             tnt.setFuseTicks(1);
             arrow.remove();
             tnt.setFuseTicks(0);
-            float radius = tnt.getYield();
-            tnt.setYield(radius/3);
     	} else if (e.getEntity() instanceof SpectralArrow) {
     		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
     		Location locmid = sparrow.getLocation();
