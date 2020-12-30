@@ -244,7 +244,7 @@ public class MyPluginListener implements Listener {
     			e.getHitEntity().remove();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
         		kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
-        		Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
+        		Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
     		}
     		else {
     			world.spawnEntity(loc, EntityType.GHAST);
