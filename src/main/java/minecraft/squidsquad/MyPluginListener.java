@@ -188,7 +188,7 @@ public class MyPluginListener implements Listener {
     			fw.detonate();
     	    	Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
-    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    			//Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
     		}
     	}
     }
@@ -207,7 +207,7 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(ChatColor.RED + "Orb thrown!");
+            //Bukkit.broadcastMessage(ChatColor.RED + "Orb thrown!");
     	}
     }
 
@@ -240,7 +240,7 @@ public class MyPluginListener implements Listener {
     		&& 
     		e.getEntity().isGlowing() == true
     	){
-    		Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
+    		//Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
     		Location loc = e.getEntity().getLocation();
     		World world = e.getEntity().getWorld();
     		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
@@ -258,7 +258,7 @@ public class MyPluginListener implements Listener {
     			e.getHitEntity().remove();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
-    			Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
+    			//Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
     			gary.remove();
     		}
     		else {
