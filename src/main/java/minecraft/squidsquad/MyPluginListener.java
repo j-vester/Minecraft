@@ -88,7 +88,7 @@ public class MyPluginListener implements Listener {
     
     @SuppressWarnings("deprecation")
     @EventHandler
-    public void onCatSwordAttack(PlayerInteractEntityEvent event) {
+    public void onCatSwordRightClick(PlayerInteractEntityEvent event) {
     	if (
 			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
         ) {
@@ -120,9 +120,9 @@ public class MyPluginListener implements Listener {
     		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& 
     		(
-    			event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
-    			||
     			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
+    			||
+    			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK
     		)
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
@@ -137,7 +137,7 @@ public class MyPluginListener implements Listener {
     @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
-    		if(
+    		/*if(
     			e.getHitEntity().getType().equals(EntityType.CREEPER) 
     			|| 
     			e.getHitEntity().getType().equals(EntityType.GHAST)
@@ -154,7 +154,7 @@ public class MyPluginListener implements Listener {
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
     			Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
     		}
-    		else {
+    		else {*/
     			Snowball kittenball = (Snowball) e.getEntity();
     			Location loc = kittenball.getLocation();
     			World world = kittenball.getWorld();
@@ -166,7 +166,7 @@ public class MyPluginListener implements Listener {
 	        	fw.detonate();
             	Ghast kitty = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
             	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
-    		}
+    		//}
     	}
     }
 }
