@@ -42,18 +42,24 @@ public class MyPluginListener implements Listener {
         this.myPlugin = myPlugin;
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
         event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
     }
     
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event)
     {
     	event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
     }
 
     @EventHandler
