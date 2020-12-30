@@ -33,8 +33,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
-//import minecraft.teamocto.DefenseCreationEvent;
-
 public class MyPluginListener implements Listener {
 
     private final MyPlugin myPlugin;
