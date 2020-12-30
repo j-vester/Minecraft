@@ -25,6 +25,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
@@ -41,11 +42,24 @@ public class MyPluginListener implements Listener {
         this.myPlugin = myPlugin;
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
+        event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
+    }
+    
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event)
+    {
+    	event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
     }
 
     @EventHandler
