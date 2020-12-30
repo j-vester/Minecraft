@@ -193,7 +193,7 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(ChatColor.RED + "Orb!");
+            Bukkit.broadcastMessage(ChatColor.RED + "Orb thrown!");
     	}
     }
 
@@ -228,6 +228,7 @@ public class MyPluginListener implements Listener {
     		&& 
     		e.getEntity().isGlowing() == true
     	){
+    		Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
     		Location loc = e.getHitEntity().getLocation();
     		World world = e.getHitEntity().getWorld();
     		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
