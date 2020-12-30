@@ -133,7 +133,7 @@ public class MyPluginListener implements Listener {
     	if (
     		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& 
-    		event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
+    		event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
