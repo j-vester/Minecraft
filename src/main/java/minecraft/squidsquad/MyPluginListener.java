@@ -116,52 +116,52 @@ public class MyPluginListener implements Listener {
             while(it.hasNext()){
                 block = it.next();
                 if(block.getType() == Material.BLACK_WOOL) {
-                    e.blockList().remove(block);
+                    it.remove();
                 }
-                if(block.getType() == Material.BLUE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.BLUE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.BROWN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.BROWN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.CYAN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.CYAN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.GRAY_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.GRAY_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.GREEN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.GREEN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIGHT_BLUE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIGHT_BLUE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIGHT_GRAY_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIGHT_GRAY_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIME_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIME_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.MAGENTA_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.MAGENTA_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.ORANGE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.ORANGE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.PINK_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.PINK_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.PURPLE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.PURPLE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.RED_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.RED_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.WHITE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.WHITE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.YELLOW_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.YELLOW_WOOL) {
+                    it.remove();
                 }
             }
         }
