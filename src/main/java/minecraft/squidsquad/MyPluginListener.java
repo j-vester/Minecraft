@@ -66,8 +66,6 @@ public class MyPluginListener implements Listener {
             World world = arrow.getWorld();
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
-            tnt.setFuseTicks(1);
-            arrow.remove();
             tnt.setFuseTicks(0);
             float radius = tnt.getYield();
             tnt.setYield(radius/2);
