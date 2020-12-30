@@ -235,24 +235,20 @@ public class MyPluginListener implements Listener {
     		fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
     		fw.setFireworkMeta(fwm);
     	    fw.detonate();
-    		if(e.getHitEntity().getType() != null ){
-    			if (
-    				e.getHitEntity().getType().equals(EntityType.CREEPER) 
-    				||
-    				e.getHitEntity().getType().equals(EntityType.GHAST)
-    			) {
-    				e.getHitEntity().remove();
-    				Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-    				kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
-    				Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
-    			}
-    			else {
-    				Bukkit.broadcastMessage(ChatColor.GOLD + "Hit a target!");
-    			}
+			Ghast gary = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
+    		if (
+    			e.getHitEntity().getType().equals(EntityType.CREEPER) 
+    			||
+    			e.getHitEntity().getType().equals(EntityType.GHAST)
+    		) {
+    			e.getHitEntity().remove();
+    			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
+    			Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
+    			gary.remove();
     		}
     		else {
-    			world.spawnEntity(loc, EntityType.GHAST);
-            	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
+    			gary.remove();
     		}
     	}
     }
