@@ -155,8 +155,8 @@ public class MyPluginListener implements Listener {
                 }
                 if(block.getType() == Material.YELLOW_WOOL) {
                     e.blockList().remove(block);
-                }*/
-            }
+                }
+            }*/
         }
     } 
 
