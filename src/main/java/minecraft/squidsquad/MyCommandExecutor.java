@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
 
@@ -31,15 +33,15 @@ public class MyCommandExecutor implements CommandExecutor {
             case "ping":
                 handlePing(sender, command, label, args);
                 break;
-            case "spm":
-                spawnMonster(sender, command, label, args);
-                break;
             case "setwinddir":
                 handleWindDirection(sender, command, label, args);
                 break;
             case "setwindspd":
                 handleWindSpeed(sender, command, label, args);
                 break;
+            case "getcatsword":
+            	provideCatSword(sender, command, label, args);
+            	break;
             default:
                 return false;
         }
@@ -48,17 +50,6 @@ public class MyCommandExecutor implements CommandExecutor {
 
     private boolean handlePing(CommandSender sender, Command command, String label, String[] args) {
         sender.sendMessage("Pong!");
-        return true;
-    };
-
-    private boolean spawnMonster(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player){
-            Player p = (Player)sender;
-            Location loc = p.getLocation();
-            //World world = p.getWorld();
-            //Creeper creeper = world.spawnEntity(loc, Creeper.class);
-            p.getWorld().spawnEntity(loc, EntityType.DOLPHIN);
-        }
         return true;
     };
 
@@ -95,5 +86,13 @@ public class MyCommandExecutor implements CommandExecutor {
         }
         sender.sendMessage("This command requires exactly two integers!");
         return false;
+    }
+    
+    private boolean provideCatSword(CommandSender sender, Command command, String label, String[] args) {
+    	if (sender instanceof Player){
+    		Player p = (Player)sender;
+    		p.getInventory().addItem(ExcaliPurr.excaliPurr());
+    	}
+    	return false;
     }
 }
