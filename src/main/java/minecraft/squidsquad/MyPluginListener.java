@@ -207,13 +207,11 @@ public class MyPluginListener implements Listener {
         if (fulfilledConditionsToCreateShield && enoughGlassPanelsInInventory){
             Location loc = e.getPlayer().getLocation();
             World world = loc.getWorld();
-            // Creating custom location
             Random x = new Random();
             Random z = new Random();
             double randomX = -3 + (3 - - 3)* x.nextDouble();
             double randomZ = -3 + (3 - - 3)* z.nextDouble();
             Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY(), loc.getZ()+randomZ);
-            //Spawn creeper
             Creeper creeper = (Creeper)world.spawnEntity(spawnloc, EntityType.CREEPER);
             creeper.setHealth(1);
             creeper.setMaxFuseTicks(100);
