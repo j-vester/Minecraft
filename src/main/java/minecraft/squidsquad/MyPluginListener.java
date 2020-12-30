@@ -1,13 +1,15 @@
 package minecraft.squidsquad;
 
+import java.util.ArrayList;
 import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.Material;
+import org.bukkit.block.*;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -15,24 +17,19 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Creeper;
 import org.bukkit.inventory.*;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.event.*;
-import org.bukkit.Material;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
@@ -69,6 +66,8 @@ public class MyPluginListener implements Listener {
             World world = arrow.getWorld();
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
+            tnt.setFuseTicks(1);
+            arrow.remove();
             tnt.setFuseTicks(0);
             float radius = tnt.getYield();
             tnt.setYield(radius/2);
@@ -99,6 +98,62 @@ public class MyPluginListener implements Listener {
     		tntwest.setYield(radius*2/5);
     	}
     }
+
+    public void onCreeperExplosion(EntityExplodeEvent e){
+        if(e.getEntity() instanceof Creeper) {
+            for (Block block : new ArrayList<Block>(e.blockList())){
+                if(block.getType() == Material.BLACK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BROWN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.CYAN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GREEN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIME_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.MAGENTA_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.ORANGE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PINK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PURPLE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.RED_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.WHITE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.YELLOW_WOOL) {
+                    e.blockList().remove(block);
+                }
+            }
+        }
+    } 
+
     
     @SuppressWarnings("deprecation")
     @EventHandler
@@ -122,7 +177,7 @@ public class MyPluginListener implements Listener {
     	        fw.detonate();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
-    			Bukkit.broadcastMessage(ChatColor.GOLD + "Magic!");
+    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");
     		}	
     	}
     }
@@ -133,11 +188,7 @@ public class MyPluginListener implements Listener {
     	if (
     		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& 
-    		(
-    			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
-    			||
-    			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK
-    		)
+    		event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
@@ -145,6 +196,7 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
+            Bukkit.broadcastMessage(ChatColor.RED + "Orb!");
     	}
     }
 
@@ -175,13 +227,10 @@ public class MyPluginListener implements Listener {
     @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
-    		/*if(
-    			e.getHitEntity().getType().equals(EntityType.CREEPER) 
-    			|| 
-    			e.getHitEntity().getType().equals(EntityType.GHAST)
-    		) {
+    		if(e.getHitEntity().getType().equals(EntityType.CREEPER) || e.getHitEntity().getType().equals(EntityType.GHAST)) {
     			Location loc = e.getHitEntity().getLocation();
     			World world = e.getHitEntity().getWorld();
+    			e.getHitEntity().remove();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     			FireworkMeta fwm = fw.getFireworkMeta();
     			fwm.setPower(6);
@@ -191,8 +240,7 @@ public class MyPluginListener implements Listener {
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
     			Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
-    		}
-    		else {*/
+    		} else {
     			Snowball kittenball = (Snowball) e.getEntity();
     			Location loc = kittenball.getLocation();
     			World world = kittenball.getWorld();
@@ -202,9 +250,9 @@ public class MyPluginListener implements Listener {
 				fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
 				fw.setFireworkMeta(fwm);
 	        	fw.detonate();
-            	Ghast kitty = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
+            	world.spawnEntity(loc, EntityType.GHAST);
             	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
-    		//}
+    		}
     	}
     }
 }
