@@ -88,10 +88,10 @@ public class MyPluginListener implements Listener {
     		tntwest.setFuseTicks(40);
     		float radius = tntmid.getYield();
     		tntmid.setYield(radius*2/3);
-    		tntnorth.setYield(radius*2/5);
-    		tnteast.setYield(radius*2/5);
-    		tntsouth.setYield(radius*2/5);
-    		tntwest.setYield(radius*2/5);
+    		tntnorth.setYield(radius/3);
+    		tnteast.setYield(radius/3);
+    		tntsouth.setYield(radius/3);
+    		tntwest.setYield(radius/3);
     	}
     }
 
