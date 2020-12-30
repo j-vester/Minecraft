@@ -229,8 +229,8 @@ public class MyPluginListener implements Listener {
     		e.getEntity().isGlowing() == true
     	){
     		Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
-    		Location loc = e.getHitEntity().getLocation();
-    		World world = e.getHitEntity().getWorld();
+    		Location loc = e.getEntity().getLocation();
+    		World world = e.getEntity().getWorld();
     		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     		FireworkMeta fwm = fw.getFireworkMeta();
     		fwm.setPower(6);
