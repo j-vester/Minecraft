@@ -74,7 +74,7 @@ public class MyPluginListener implements Listener {
     		Location loc2 = sparrow.getLocation();
     		Location loc3 = sparrow.getLocation();
     		Vector upwards = new Vector(0,1,0);
-    		Vector dir1 = sparrow.getVelocity().normalize().multiply(-3);
+    		Vector dir1 = sparrow.getVelocity().normalize().multiply(-1.5);
     		Vector dir2 = dir1.clone().crossProduct(upwards).add(dir1);
 	    	Vector dir3 = dir1.clone().crossProduct(upwards).multiply(-1).add(dir1);
 	    	if (e.getHitEntity() != null) {
