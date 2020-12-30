@@ -3,12 +3,10 @@ package minecraft.squidsquad;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.EntityType;
-import org.bukkit.*;
+
 
 public class MyCommandExecutor implements CommandExecutor {
     private final MyPlugin plugin;
@@ -36,9 +34,15 @@ public class MyCommandExecutor implements CommandExecutor {
             case "spm":
                 spawnMonster(sender, command, label, args);
                 break;
-            case "setwind":
-                handleWind(sender, command, label, args);
+            case "setwinddir":
+                handleWindDirection(sender, command, label, args);
                 break;
+            case "setwindspd":
+                handleWindSpeed(sender, command, label, args);
+                break;
+            case "getcatsword":
+            	provideCatSword(sender, command, label, args);
+            	break;
             default:
                 return false;
         }
@@ -61,21 +65,46 @@ public class MyCommandExecutor implements CommandExecutor {
         return true;
     };
 
-    private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 2){
+    private boolean handleWindSpeed(CommandSender sender, Command command, String label, String[] args){
+        if (args.length == 1){
             try{
-                int x = Integer.parseInt(args[0]);
-                int z = Integer.parseInt(args[1]);
-                plugin.wind.changeWindSpeed(x, z);
-                sender.sendMessage("Wind velocity has been set");
+                int speedModifier = Integer.parseInt(args[0]);
+                plugin.wind.changeWindSpeed(speedModifier);
+                sender.sendMessage("Wind speed has been modified!");
             }
             catch (NumberFormatException e){
-                sender.sendMessage("This command requires integers");
+                sender.sendMessage("This command requires an integer!");
                 return false;
             }
             return true;
         }
-        sender.sendMessage("This command requires two integers as x and z values");
+        sender.sendMessage("This command requires one integer as argument!");
         return false;
+    }
+    
+    private boolean handleWindDirection(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length == 2){
+            try{
+                int x = Integer.parseInt(args[0]);
+                int z = Integer.parseInt(args[1]);
+                plugin.wind.changeWindDirection(x, z);
+                sender.sendMessage("Wind direction has been set!");
+            }
+            catch (NumberFormatException e){
+                sender.sendMessage("This command requires two integers!");
+                return false;
+            }
+            return true;
+        }
+        sender.sendMessage("This command requires exactly two integers!");
+        return false;
+    }
+    
+    private boolean provideCatSword(CommandSender sender, Command command, String label, String[] args) {
+    	if (sender instanceof Player){
+    		Player p = (Player)sender;
+    		p.getInventory().addItem(ExcaliPurr.excaliPurr());
+    	}
+    	return false;
     }
 }
