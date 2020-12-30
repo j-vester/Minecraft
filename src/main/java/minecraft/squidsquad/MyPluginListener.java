@@ -33,8 +33,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
-//import minecraft.teamocto.DefenseCreationEvent;
-
 public class MyPluginListener implements Listener {
 
     private final MyPlugin myPlugin;
@@ -66,9 +64,9 @@ public class MyPluginListener implements Listener {
             World world = arrow.getWorld();
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
-            tnt.setFuseTicks(1);
-            arrow.remove();
             tnt.setFuseTicks(0);
+            float radius = tnt.getYield();
+            tnt.setYield(radius/2);
     	} else if (e.getEntity() instanceof SpectralArrow) {
     		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
     		Location locmid = sparrow.getLocation();
@@ -89,11 +87,11 @@ public class MyPluginListener implements Listener {
     		tntsouth.setFuseTicks(40);
     		tntwest.setFuseTicks(40);
     		float radius = tntmid.getYield();
-    		tntmid.setYield(radius/2);
-    		tntnorth.setYield(radius/3);
-    		tnteast.setYield(radius/3);
-    		tntsouth.setYield(radius/3);
-    		tntwest.setYield(radius/3);
+    		tntmid.setYield(radius*2/3);
+    		tntnorth.setYield(radius*2/5);
+    		tnteast.setYield(radius*2/5);
+    		tntsouth.setYield(radius*2/5);
+    		tntwest.setYield(radius*2/5);
     	}
     }
 
