@@ -156,26 +156,28 @@ public class MyPluginListener implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onCatSwordRightClick(PlayerInteractEntityEvent event) {
-    	if (
-			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr())
-			&& (
-    			event.getRightClicked().getType().equals(EntityType.CREEPER)
-    			||
-    			event.getRightClicked().getType().equals(EntityType.GHAST)
-    		)
-		){
-    		Location loc = event.getRightClicked().getLocation();
-    		World world = event.getRightClicked().getWorld();
-    		event.getRightClicked().remove();
-    		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
-    		FireworkMeta fwm = fw.getFireworkMeta();
-    		fwm.setPower(6);
-    		fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
-    		fw.setFireworkMeta(fwm);
-    	    fw.detonate();
-    		Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-    		kitty.setOwner(event.getPlayer());
-    		Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    	if(event.getHand().equals(EquipmentSlot.HAND)) {
+    		if (
+    			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr())
+				&& (
+					event.getRightClicked().getType().equals(EntityType.CREEPER)
+    				||
+    				event.getRightClicked().getType().equals(EntityType.GHAST)
+				)
+    		){
+    			Location loc = event.getRightClicked().getLocation();
+    			World world = event.getRightClicked().getWorld();
+    			event.getRightClicked().remove();
+    			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
+    			FireworkMeta fwm = fw.getFireworkMeta();
+    			fwm.setPower(6);
+    			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
+    			fw.setFireworkMeta(fwm);
+    			fw.detonate();
+    	    	Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    			kitty.setOwner(event.getPlayer());
+    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    		}
     	}
     }
     
