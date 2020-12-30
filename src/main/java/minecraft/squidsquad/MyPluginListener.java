@@ -71,7 +71,7 @@ public class MyPluginListener implements Listener {
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(0);
             float radius = tnt.getYield();
-            tnt.setYield(radius/3);
+            tnt.setYield(radius);
     	} else if (e.getEntity() instanceof SpectralArrow) {
     		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
     		Location locmid = sparrow.getLocation();
