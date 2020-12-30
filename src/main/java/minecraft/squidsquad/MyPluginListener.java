@@ -1,6 +1,7 @@
 package minecraft.squidsquad;
 
 import java.util.Random;
+import java.util.Iterator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -110,11 +111,17 @@ public class MyPluginListener implements Listener {
 
     public void onCreeperExplosion(EntityExplodeEvent e){
         if(e.getEntity() instanceof Creeper) {
-            e.blockList().removeIf(block -> (block.getType() == Material.BLACK_WOOL));
-            e.blockList().removeIf(block -> (block.getType() == Material.BLUE_WOOL));
-            e.blockList().removeIf(block -> (block.getType() == Material.BROWN_WOOL));
-               
-            /*if(block.getType() == Material.BROWN_WOOL) {
+            Iterator<Block> it = e.blockList().iterator();
+            Block block;
+            while(it.hasNext()){
+                block = it.next();
+                if(block.getType() == Material.BLACK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BROWN_WOOL) {
                     e.blockList().remove(block);
                 }
                 if(block.getType() == Material.CYAN_WOOL) {
@@ -156,7 +163,7 @@ public class MyPluginListener implements Listener {
                 if(block.getType() == Material.YELLOW_WOOL) {
                     e.blockList().remove(block);
                 }
-            }*/
+            }
         }
     } 
 
