@@ -10,9 +10,6 @@ commands:
    setwind:
       description: sets a default value for the wind
       usage: /setwind
-   spm:
-      description: spawns a monster
-      usage: /spm
 #commands:
 #   placearena:
 #      description: places an arena

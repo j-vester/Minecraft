@@ -34,9 +34,6 @@ public class MyCommandExecutor implements CommandExecutor {
             case "ping":
                 handlePing(sender, command, label, args);
                 break;
-            case "spm":
-                spawnMonster(sender, command, label, args);
-                break;
             case "setwind":
                 handleWind(sender, command, label, args);
                 break;
@@ -50,19 +47,7 @@ public class MyCommandExecutor implements CommandExecutor {
         sender.sendMessage("Pong!");
         return true;
     };
-
-    private boolean spawnMonster(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player){
-            Player p = (Player)sender;
-            Location loc = p.getLocation();
-            World world = p.getWorld();
-            world.spawnEntity(loc, EntityType.CREEPER);
-            Creeper creeper = (Creeper)world.spawnEntity(loc, EntityType.CREEPER);
-            creeper.explode();
-        }
-        return true;
-    };
-
+    
     private boolean handleWind(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2){
             try{

@@ -83,10 +83,10 @@ public class MyPluginListener implements Listener {
             World world = loc.getWorld();
             // Creating custom location
             Random x = new Random();
-            Random y = new Random();
-            double randomX = -5 + (5 - - 5)* x.nextDouble();
-            double randomY = -5 + (5 - - 5)* y.nextDouble();
-            Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY()+randomY, loc.getZ());
+            Random z = new Random();
+            double randomX = -3 + (3 - - 3)* x.nextDouble();
+            double randomZ = -3 + (3 - - 3)* z.nextDouble();
+            Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY(), loc.getZ()+randomZ);
             //Spawn creeper
             Creeper creeper = (Creeper)world.spawnEntity(spawnloc, EntityType.CREEPER);
             creeper.setHealth(1);

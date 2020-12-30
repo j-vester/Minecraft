@@ -25,7 +25,6 @@ public class MyPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(myPluginListener, this);
         getCommand("ping").setExecutor(myCommandExecutor);
         getCommand("setWind").setExecutor(myCommandExecutor);
-        getCommand("spm").setExecutor(myCommandExecutor);
         
     }
 
