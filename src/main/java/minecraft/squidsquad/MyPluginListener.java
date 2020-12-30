@@ -133,7 +133,7 @@ public class MyPluginListener implements Listener {
     	if (
     		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& 
-    		event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
+    		event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
@@ -172,13 +172,10 @@ public class MyPluginListener implements Listener {
     @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
-    		if(
-    			e.getHitEntity().getType().equals(EntityType.CREEPER) 
-    			|| 
-    			e.getHitEntity().getType().equals(EntityType.GHAST)
-    		) {
+    		if(e.getHitEntity().getType().equals(EntityType.CREEPER) || e.getHitEntity().getType().equals(EntityType.GHAST)) {
     			Location loc = e.getHitEntity().getLocation();
     			World world = e.getHitEntity().getWorld();
+    			e.getHitEntity().remove();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     			FireworkMeta fwm = fw.getFireworkMeta();
     			fwm.setPower(6);
@@ -188,8 +185,7 @@ public class MyPluginListener implements Listener {
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
     			Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
-    		}
-    		else {
+    		} else {
     			Snowball kittenball = (Snowball) e.getEntity();
     			Location loc = kittenball.getLocation();
     			World world = kittenball.getWorld();
