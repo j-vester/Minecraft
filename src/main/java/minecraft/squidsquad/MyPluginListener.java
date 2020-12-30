@@ -25,6 +25,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
@@ -46,6 +47,13 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
+        event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+    }
+    
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event)
+    {
+    	event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
     }
 
     @EventHandler
