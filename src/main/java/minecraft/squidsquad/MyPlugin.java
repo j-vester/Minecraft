@@ -26,7 +26,6 @@ public class MyPlugin extends JavaPlugin {
         getCommand("ping").setExecutor(myCommandExecutor);
         getCommand("setwinddir").setExecutor(myCommandExecutor);
         getCommand("setwindspd").setExecutor(myCommandExecutor);
-        getCommand("spm").setExecutor(myCommandExecutor);
         getCommand("getcatsword").setExecutor(myCommandExecutor);
         getServer().addRecipe(ExcaliPurr.catSwordRecipe());
     }

@@ -1,5 +1,7 @@
 package minecraft.squidsquad;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -18,11 +20,23 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Creeper;
+import org.bukkit.inventory.*;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.event.*;
+import org.bukkit.Material;
+import org.bukkit.event.Event.Result;
+import org.bukkit.event.block.Action;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
+//import minecraft.teamocto.DefenseCreationEvent;
 
 public class MyPluginListener implements Listener {
 
@@ -129,6 +143,30 @@ public class MyPluginListener implements Listener {
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
             Bukkit.broadcastMessage(ChatColor.RED + "Orb!");
     	}
+    }
+
+    @EventHandler
+    public void onDefenseCreated(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+        Inventory inv = p.getInventory();
+        Material material = Material.GOLDEN_PICKAXE;
+        Boolean fulfilledConditionsToCreateShield = (e.useInteractedBlock() != Result.DENY) && (e.getHand() == EquipmentSlot.HAND) && (p.getInventory().getItemInMainHand().getType() == material) && (e.getAction() == Action.RIGHT_CLICK_BLOCK);
+        Boolean enoughGlassPanelsInInventory = inv.contains(Material.GLASS_PANE, 9);
+        if (fulfilledConditionsToCreateShield && enoughGlassPanelsInInventory){
+            Location loc = e.getPlayer().getLocation();
+            World world = loc.getWorld();
+            // Creating custom location
+            Random x = new Random();
+            Random z = new Random();
+            double randomX = -3 + (3 - - 3)* x.nextDouble();
+            double randomZ = -3 + (3 - - 3)* z.nextDouble();
+            Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY(), loc.getZ()+randomZ);
+            //Spawn creeper
+            Creeper creeper = (Creeper)world.spawnEntity(spawnloc, EntityType.CREEPER);
+            creeper.setHealth(1);
+            creeper.setMaxFuseTicks(100);
+            creeper.ignite();
+        }
     }
     
     @EventHandler
