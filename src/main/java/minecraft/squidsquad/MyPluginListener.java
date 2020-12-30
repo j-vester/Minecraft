@@ -179,6 +179,7 @@ public class MyPluginListener implements Listener {
     		) {
     			Location loc = e.getHitEntity().getLocation();
     			World world = e.getHitEntity().getWorld();
+    			e.getHitEntity().remove();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     			FireworkMeta fwm = fw.getFireworkMeta();
     			fwm.setPower(6);
