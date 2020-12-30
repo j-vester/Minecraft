@@ -1,13 +1,15 @@
 package minecraft.squidsquad;
 
+import java.util.ArrayList;
 import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.Material;
+import org.bukkit.block.*;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -15,24 +17,19 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.entity.SpectralArrow;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Creeper;
 import org.bukkit.inventory.*;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.event.*;
-import org.bukkit.Material;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
@@ -69,9 +66,9 @@ public class MyPluginListener implements Listener {
             World world = arrow.getWorld();
             arrow.remove();
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
+            tnt.setFuseTicks(1);
+            arrow.remove();
             tnt.setFuseTicks(0);
-            float radius = tnt.getYield();
-            tnt.setYield(radius/3);
     	} else if (e.getEntity() instanceof SpectralArrow) {
     		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
     		Location locmid = sparrow.getLocation();
@@ -99,6 +96,62 @@ public class MyPluginListener implements Listener {
     		tntwest.setYield(radius/3);
     	}
     }
+
+    public void onCreeperExplosion(EntityExplodeEvent e){
+        if(e.getEntity() instanceof Creeper) {
+            for (Block block : new ArrayList<Block>(e.blockList())){
+                if(block.getType() == Material.BLACK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BROWN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.CYAN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GREEN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIME_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.MAGENTA_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.ORANGE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PINK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PURPLE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.RED_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.WHITE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.YELLOW_WOOL) {
+                    e.blockList().remove(block);
+                }
+            }
+        }
+    } 
+
     
     @SuppressWarnings("deprecation")
     @EventHandler
