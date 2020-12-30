@@ -1,15 +1,19 @@
 package minecraft.squidsquad;
 
+import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.Material;
+import org.bukkit.block.*;
 import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -49,13 +53,62 @@ public class MyPluginListener implements Listener {
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(1);
             arrow.remove();
-    	/*} else if (e.getEntity() instanceof Snowball) {
-    		Snowball snow = (Snowball) e.getEntity();
-    		Location loc = snow.getLocation();
-    		World world = snow.getWorld();
-    		//Spawn Creeper?
-    	 */
+
     	}
     }
-    
+
+    public void onCreeperExplosion(EntityExplodeEvent e){
+        if(e.getEntity() instanceof Creeper) {
+            for (Block block : new ArrayList<Block>(e.blockList())){
+                if(block.getType() == Material.BLACK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.BROWN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.CYAN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.GREEN_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_BLUE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIGHT_GRAY_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.LIME_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.MAGENTA_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.ORANGE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PINK_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.PURPLE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.RED_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.WHITE_WOOL) {
+                    e.blockList().remove(block);
+                }
+                if(block.getType() == Material.YELLOW_WOOL) {
+                    e.blockList().remove(block);
+                }
+            }
+        }
+    } 
 }
