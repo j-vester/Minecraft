@@ -1,6 +1,7 @@
 package minecraft.squidsquad;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
@@ -84,21 +85,39 @@ public class MyPluginListener implements Listener {
     @SuppressWarnings("deprecation")
 	@EventHandler
     public void onCatSwordSwing(PlayerInteractEvent event) {
-    	if (event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
-    		&& (
-    			event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
-    			|| event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR)
-    		){
+    	if (
+    			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
+    			&& 
+    			(
+    				event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_BLOCK
+    				|| 
+    				event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK
+        		)
+            )
+    	{
+    		//Implement what happens on click block?
+    	} 
+    	else if (
+    			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
+    			&& 
+    			(
+    				event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
+    				||
+    				event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
+    			)
+    		)
+    	{
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
     		kittenball.setShooter(event.getPlayer());
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(event.getPlayer() + "has launched a kittenball!");
+            Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getDisplayName() + "has launched a kittenball!");
     	}
     }
     
+    @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
     		Snowball kittenball = (Snowball) e.getEntity();
