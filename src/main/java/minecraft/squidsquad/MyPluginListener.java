@@ -102,12 +102,13 @@ public class MyPluginListener implements Listener {
     			event.getRightClicked().remove();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     			FireworkMeta fwm = fw.getFireworkMeta();
-    			fwm.setPower(2);
+    			fwm.setPower(6);
     			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
     			fw.setFireworkMeta(fwm);
     	        fw.detonate();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
+    			Bukkit.broadcastMessage(ChatColor.GOLD + "Magic!");
     		}	
     	}
     }
@@ -130,7 +131,6 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getDisplayName() + "has launched a kittenball!");
     	}
     }
     
@@ -146,12 +146,13 @@ public class MyPluginListener implements Listener {
     			World world = e.getHitEntity().getWorld();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
     			FireworkMeta fwm = fw.getFireworkMeta();
-    			fwm.setPower(2);
+    			fwm.setPower(6);
     			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
     			fw.setFireworkMeta(fwm);
     	        fw.detonate();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
+    			Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
     		}
     		else {
     			Snowball kittenball = (Snowball) e.getEntity();
@@ -159,11 +160,12 @@ public class MyPluginListener implements Listener {
     			World world = kittenball.getWorld();
     			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
 				FireworkMeta fwm = fw.getFireworkMeta();
-				fwm.setPower(2);
+				fwm.setPower(6);
 				fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
 				fw.setFireworkMeta(fwm);
 	        	fw.detonate();
             	Ghast kitty = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
+            	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
     		}
     	}
     }
