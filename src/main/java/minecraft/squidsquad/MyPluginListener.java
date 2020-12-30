@@ -25,6 +25,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
@@ -41,11 +42,24 @@ public class MyPluginListener implements Listener {
         this.myPlugin = myPlugin;
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
+        event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
+    }
+    
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event)
+    {
+    	event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
     }
 
     @EventHandler
@@ -181,7 +195,7 @@ public class MyPluginListener implements Listener {
     			fw.detonate();
     	    	Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
-    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    			//Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
     		}
     	}
     }
@@ -200,7 +214,7 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(ChatColor.RED + "Orb thrown!");
+            //Bukkit.broadcastMessage(ChatColor.RED + "Orb thrown!");
     	}
     }
 
@@ -233,7 +247,7 @@ public class MyPluginListener implements Listener {
     		&& 
     		e.getEntity().isGlowing() == true
     	){
-    		Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
+    		//Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
     		Location loc = e.getEntity().getLocation();
     		World world = e.getEntity().getWorld();
     		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
@@ -242,24 +256,20 @@ public class MyPluginListener implements Listener {
     		fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
     		fw.setFireworkMeta(fwm);
     	    fw.detonate();
-    		if(e.getHitEntity().getType() != null ){
-    			if (
-    				e.getHitEntity().getType().equals(EntityType.CREEPER) 
-    				||
-    				e.getHitEntity().getType().equals(EntityType.GHAST)
-    			) {
-    				e.getHitEntity().remove();
-    				Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-    				kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
-    				Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
-    			}
-    			else {
-    				Bukkit.broadcastMessage(ChatColor.GOLD + "Hit a target!");
-    			}
+			Ghast gary = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
+    		if (
+    			e.getHitEntity().getType().equals(EntityType.CREEPER) 
+    			||
+    			e.getHitEntity().getType().equals(EntityType.GHAST)
+    		) {
+    			e.getHitEntity().remove();
+    			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
+    			//Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
+    			gary.remove();
     		}
     		else {
-    			world.spawnEntity(loc, EntityType.GHAST);
-            	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
+    			gary.remove();
     		}
     	}
     }
