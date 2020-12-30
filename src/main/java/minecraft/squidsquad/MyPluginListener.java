@@ -122,7 +122,7 @@ public class MyPluginListener implements Listener {
     	        fw.detonate();
     			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
-    			Bukkit.broadcastMessage(ChatColor.GOLD + "Magic!");
+    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");
     		}	
     	}
     }
@@ -133,11 +133,7 @@ public class MyPluginListener implements Listener {
     	if (
     		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
     		&& 
-    		(
-    			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
-    			||
-    			event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK
-    		)
+    		event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
@@ -145,6 +141,7 @@ public class MyPluginListener implements Listener {
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
+            Bukkit.broadcastMessage(ChatColor.RED + "Orb!");
     	}
     }
 
@@ -175,7 +172,7 @@ public class MyPluginListener implements Listener {
     @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
-    		/*if(
+    		if(
     			e.getHitEntity().getType().equals(EntityType.CREEPER) 
     			|| 
     			e.getHitEntity().getType().equals(EntityType.GHAST)
@@ -192,7 +189,7 @@ public class MyPluginListener implements Listener {
     			kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
     			Bukkit.broadcastMessage(ChatColor.GOLD + "Kitten!");
     		}
-    		else {*/
+    		else {
     			Snowball kittenball = (Snowball) e.getEntity();
     			Location loc = kittenball.getLocation();
     			World world = kittenball.getWorld();
@@ -202,9 +199,9 @@ public class MyPluginListener implements Listener {
 				fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
 				fw.setFireworkMeta(fwm);
 	        	fw.detonate();
-            	Ghast kitty = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
+            	world.spawnEntity(loc, EntityType.GHAST);
             	Bukkit.broadcastMessage(ChatColor.RED + "Ghast!");
-    		//}
+    		}
     	}
     }
 }
