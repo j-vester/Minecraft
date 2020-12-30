@@ -154,26 +154,28 @@ public class MyPluginListener implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onCatSwordRightClick(PlayerInteractEntityEvent event) {
-    	if (
-			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr())
-			&& (
-    			event.getRightClicked().getType().equals(EntityType.CREEPER)
-    			||
-    			event.getRightClicked().getType().equals(EntityType.GHAST)
-    		)
-		){
-    		Location loc = event.getRightClicked().getLocation();
-    		World world = event.getRightClicked().getWorld();
-    		event.getRightClicked().remove();
-    		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
-    		FireworkMeta fwm = fw.getFireworkMeta();
-    		fwm.setPower(6);
-    		fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
-    		fw.setFireworkMeta(fwm);
-    	    fw.detonate();
-    		Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-    		kitty.setOwner(event.getPlayer());
-    		Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    	if(event.getHand().equals(EquipmentSlot.HAND)) {
+    		if (
+    			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr())
+				&& (
+					event.getRightClicked().getType().equals(EntityType.CREEPER)
+    				||
+    				event.getRightClicked().getType().equals(EntityType.GHAST)
+				)
+    		){
+    			Location loc = event.getRightClicked().getLocation();
+    			World world = event.getRightClicked().getWorld();
+    			event.getRightClicked().remove();
+    			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
+    			FireworkMeta fwm = fw.getFireworkMeta();
+    			fwm.setPower(6);
+    			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
+    			fw.setFireworkMeta(fwm);
+    			fw.detonate();
+    	    	Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    			kitty.setOwner(event.getPlayer());
+    			Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    		}
     	}
     }
     
@@ -205,13 +207,11 @@ public class MyPluginListener implements Listener {
         if (fulfilledConditionsToCreateShield && enoughGlassPanelsInInventory){
             Location loc = e.getPlayer().getLocation();
             World world = loc.getWorld();
-            // Creating custom location
             Random x = new Random();
             Random z = new Random();
             double randomX = -3 + (3 - - 3)* x.nextDouble();
             double randomZ = -3 + (3 - - 3)* z.nextDouble();
             Location spawnloc = new Location (world, loc.getX()+randomX , loc.getY(), loc.getZ()+randomZ);
-            //Spawn creeper
             Creeper creeper = (Creeper)world.spawnEntity(spawnloc, EntityType.CREEPER);
             creeper.setHealth(1);
             creeper.setMaxFuseTicks(100);
@@ -235,15 +235,20 @@ public class MyPluginListener implements Listener {
     		fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
     		fw.setFireworkMeta(fwm);
     	    fw.detonate();
-    		if(
-    	    	e.getHitEntity().getType().equals(EntityType.CREEPER) 
-    	    	||
-    	    	e.getHitEntity().getType().equals(EntityType.GHAST)
-    		) {
-    			e.getHitEntity().remove();
-    			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-        		kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
-        		Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
+    		if(e.getHitEntity().getType() != null ){
+    			if (
+    				e.getHitEntity().getType().equals(EntityType.CREEPER) 
+    				||
+    				e.getHitEntity().getType().equals(EntityType.GHAST)
+    			) {
+    				e.getHitEntity().remove();
+    				Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    				kitty.setOwner((AnimalTamer) e.getEntity().getShooter());
+    				Bukkit.broadcastMessage(ChatColor.GOLD + "Turned into kitten!");
+    			}
+    			else {
+    				Bukkit.broadcastMessage(ChatColor.GOLD + "Hit a target!");
+    			}
     		}
     		else {
     			world.spawnEntity(loc, EntityType.GHAST);
