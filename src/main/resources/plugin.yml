@@ -7,9 +7,15 @@ commands:
    ping:
       description: returns pong
       usage: /ping
-   setwind:
-      description: sets a default value for the wind
-      usage: /setwind
+   setwinddir:
+      description: sets the direction of the wind, reverts speed to 1
+      usage: /setwinddir
+   setwindspd:
+      description: sets the strength of the wind
+      usage: /setwindspd
+   getcatsword:
+      description: Summons the great ExcaliPurr, that you may whisker away your enemies!
+      usage: /getcatsword
 #commands:
 #   placearena:
 #      description: places an arena

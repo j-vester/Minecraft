@@ -3,7 +3,7 @@ import org.bukkit.util.Vector;
 import org.bukkit.entity.Arrow;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -44,9 +44,16 @@ public class allTest{
         Windspeed wind = new Windspeed(1,1);
         assertEquals(1, wind.getX());
         assertEquals(1, wind.getZ());
-        wind.changeWindSpeed(3, 4);
-        assertEquals(3, wind.getX());
-        assertEquals(4, wind.getZ());
+        wind.changeWindDirection(3, 4);
+        //vector is normalized, so divided by length.
+        //the length of the vector(3, 4) is sqrt(27).
+        //the closest int approximation is 5, therefore
+        //the individual values are divided by 5.
+        assertNotEquals(3, wind.getX());
+        assertNotEquals(4, wind.getZ());
+        assertEquals(0.6, wind.getX());
+        assertEquals(0.8, wind.getZ());
+        assertEquals(1, wind.length());
     }
 
     @Test

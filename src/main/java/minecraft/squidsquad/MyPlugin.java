@@ -24,8 +24,10 @@ public class MyPlugin extends JavaPlugin {
         //Register the Event Listener belonging to this plugin.
         getServer().getPluginManager().registerEvents(myPluginListener, this);
         getCommand("ping").setExecutor(myCommandExecutor);
-        getCommand("setWind").setExecutor(myCommandExecutor);
-        
+        getCommand("setwinddir").setExecutor(myCommandExecutor);
+        getCommand("setwindspd").setExecutor(myCommandExecutor);
+        getCommand("getcatsword").setExecutor(myCommandExecutor);
+        getServer().addRecipe(ExcaliPurr.catSwordRecipe());
     }
 
     @Override
