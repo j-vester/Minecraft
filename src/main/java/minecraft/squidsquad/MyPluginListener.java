@@ -1,6 +1,9 @@
 package minecraft.squidsquad;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
@@ -15,7 +18,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.entity.*;
 
 
@@ -82,31 +87,67 @@ public class MyPluginListener implements Listener {
     }
     
     @SuppressWarnings("deprecation")
+    @EventHandler
+    public void onCatSwordAttack(PlayerInteractEntityEvent event) {
+    	if (
+			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
+        ) {
+    		if(
+    			event.getRightClicked().getType().equals(EntityType.CREEPER)
+    			||
+    			event.getRightClicked().getType().equals(EntityType.GHAST)
+    		) {
+    			Location loc = event.getRightClicked().getLocation();
+    			World world = event.getRightClicked().getWorld();
+    			event.getRightClicked().remove();
+    			Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
+    			FireworkMeta fwm = fw.getFireworkMeta();
+    			fwm.setPower(2);
+    			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
+    			fw.setFireworkMeta(fwm);
+    	        fw.detonate();
+    			Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
+    			kitty.setOwner(event.getPlayer());
+    		}	
+    	}
+    }
+    
+    @SuppressWarnings("deprecation")
 	@EventHandler
     public void onCatSwordSwing(PlayerInteractEvent event) {
-    	if (event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
-    		&& (
-    			event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
-    			|| event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR)
-    		){
+    	if (
+    			event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
+    			&& 
+    			(
+    				event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
+    				||
+    				event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
+    			)
+    		)
+    	{
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
     		kittenball.setGlowing(true);
     		kittenball.setShooter(event.getPlayer());
     		Vector initialVelocity = kittenball.getVelocity();
             Windspeed wind = myPlugin.wind;
             kittenball.setVelocity(wind.applyWindToProjectile(initialVelocity));
-            Bukkit.broadcastMessage(event.getPlayer() + "has launched a kittenball!");
+            Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getDisplayName() + "has launched a kittenball!");
     	}
     }
     
+    @EventHandler
     public void onKittenBallImpact(ProjectileHitEvent e) {
     	if(e.getEntity() instanceof Snowball && e.getEntity().isGlowing() == true) {
     		Snowball kittenball = (Snowball) e.getEntity();
     		Location loc = kittenball.getLocation();
     		World world = kittenball.getWorld();
-            Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
-            // Implement multiple kittens being spawned, preferably shooting lazors.
-            // Implement lightning strike on spawn location.
+    		Firework fw = (Firework) world.spawnEntity(loc, EntityType.FIREWORK);
+			FireworkMeta fwm = fw.getFireworkMeta();
+			fwm.setPower(2);
+			fwm.addEffect(FireworkEffect.builder().withColor(Color.LIME).flicker(true).build());
+			fw.setFireworkMeta(fwm);
+	        fw.detonate();
+            Ghast kitty = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
     	}
     }
 }
