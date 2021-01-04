@@ -117,6 +117,7 @@ public class MyPluginListener implements Listener {
     	}
     }
 
+    @EventHandler
     public void onCreeperExplosion(EntityExplodeEvent e){
         Bukkit.broadcastMessage("entity exploded");
         if(e.getEntity() instanceof Creeper) {
