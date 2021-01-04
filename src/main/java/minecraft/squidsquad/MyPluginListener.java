@@ -124,8 +124,11 @@ public class MyPluginListener implements Listener {
     	}
     }
 
+    @EventHandler
     public void onCreeperExplosion(EntityExplodeEvent e){
+        
         if(e.getEntity() instanceof Creeper) {
+            
             Iterator<Block> it = e.blockList().iterator();
             Block block;
             while(it.hasNext()){
