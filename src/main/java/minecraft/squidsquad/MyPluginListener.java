@@ -31,12 +31,20 @@ import org.bukkit.event.block.Action;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.entity.*;
 
 public class MyPluginListener implements Listener {
 
     private final MyPlugin myPlugin;
 
+    public ItemStack makeUnbreakable(ItemStack item) {
+        ItemMeta item_meta = item.getItemMeta();
+        item_meta.setUnbreakable(true);
+        item.setItemMeta(item_meta);
+        return item;
+    }
+    
     public MyPluginListener(MyPlugin myPlugin) {
         this.myPlugin = myPlugin;
     }
@@ -47,9 +55,9 @@ public class MyPluginListener implements Listener {
     {
         Bukkit.broadcastMessage("A wild player has appeared!");
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
-        event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
-        event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
-        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
+        event.getPlayer().getInventory().addItem(makeUnbreakable(ExcaliPurr.excaliPurr()));
+        event.getPlayer().getInventory().addItem(makeUnbreakable(new ItemStack(Material.DIAMOND_SWORD)));
+        event.getPlayer().getInventory().addItem(makeUnbreakable(new ItemStack(Material.POTION, 1, (short) 1642)));
     }
     
     @SuppressWarnings("deprecation")
