@@ -88,32 +88,39 @@ public class MyPluginListener implements Listener {
             TNTPrimed tnt = (TNTPrimed) world.spawn(loc, TNTPrimed.class);
             tnt.setFuseTicks(0);
             float radius = tnt.getYield();
-            tnt.setYield(radius/2);
+            tnt.setYield(radius*2/5);
     	} else if (e.getEntity() instanceof SpectralArrow) {
     		SpectralArrow sparrow = (SpectralArrow) e.getEntity();
-    		Location locmid = sparrow.getLocation();
+    		Location loc0 = sparrow.getLocation();
+    		Location loc1 = sparrow.getLocation();
+    		Location loc2 = sparrow.getLocation();
+    		Location loc3 = sparrow.getLocation();
+    		Vector upwards = new Vector(0,1,0);
+    		Vector dir1 = sparrow.getVelocity().normalize().multiply(-.5);
+    		Vector dir2 = dir1.clone().crossProduct(upwards).multiply(2).add(dir1);
+	    	Vector dir3 = dir1.clone().crossProduct(upwards).multiply(-2).add(dir1);
+	    	if (e.getHitEntity() != null) {
+	    		dir2.multiply(-1);
+	    		dir3.multiply(-1);
+    		}
     		World world = sparrow.getWorld();
     		sparrow.remove();
-    		Location locnorth = new Location(world,locmid.getX()+5,locmid.getY(),locmid.getZ());
-    		Location loceast = new Location(world,locmid.getX(),locmid.getY(),locmid.getZ()+5);
-    		Location locsouth = new Location(world,locmid.getX()-5,locmid.getY(),locmid.getZ());
-    		Location locwest = new Location(world,locmid.getX(),locmid.getY(),locmid.getZ()-5);
-    		TNTPrimed tntmid = (TNTPrimed) world.spawn(locmid, TNTPrimed.class);
-    		TNTPrimed tntnorth = (TNTPrimed) world.spawn(locnorth, TNTPrimed.class);
-    		TNTPrimed tnteast = (TNTPrimed) world.spawn(loceast, TNTPrimed.class);
-    		TNTPrimed tntsouth = (TNTPrimed) world.spawn(locsouth, TNTPrimed.class);
-    		TNTPrimed tntwest = (TNTPrimed) world.spawn(locwest, TNTPrimed.class);
-    		tntmid.setFuseTicks(0);
-    		tntnorth.setFuseTicks(40);
-    		tnteast.setFuseTicks(40);
-    		tntsouth.setFuseTicks(40);
-    		tntwest.setFuseTicks(40);
-    		float radius = tntmid.getYield();
-    		tntmid.setYield(radius*2/3);
-    		tntnorth.setYield(radius/3);
-    		tnteast.setYield(radius/3);
-    		tntsouth.setYield(radius/3);
-    		tntwest.setYield(radius/3);
+    		loc1.add(dir1);
+    		loc2.add(dir2);
+    		loc3.add(dir3);
+    		TNTPrimed tnt0 = (TNTPrimed) world.spawn(loc0, TNTPrimed.class);
+    		TNTPrimed tnt1 = (TNTPrimed) world.spawn(loc1, TNTPrimed.class);
+    		TNTPrimed tnt2 = (TNTPrimed) world.spawn(loc2, TNTPrimed.class);
+    		TNTPrimed tnt3 = (TNTPrimed) world.spawn(loc3, TNTPrimed.class);
+    		tnt0.setFuseTicks(0);
+    		tnt1.setFuseTicks(40);
+    		tnt2.setFuseTicks(40);
+    		tnt3.setFuseTicks(40);
+    		float radius = tnt0.getYield();
+    		tnt0.setYield(radius*2/3);
+    		tnt1.setYield(radius/3);
+    		tnt2.setYield(radius/3);
+    		tnt3.setYield(radius/3);
     	}
     }
 
