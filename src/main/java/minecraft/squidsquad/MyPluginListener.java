@@ -118,13 +118,16 @@ public class MyPluginListener implements Listener {
     }
 
     public void onCreeperExplosion(EntityExplodeEvent e){
+        Bukkit.broadcastMessage("entity exploded");
         if(e.getEntity() instanceof Creeper) {
+            Bukkit.broadcastMessage("Creeper exploded!");
             Iterator<Block> it = e.blockList().iterator();
             Block block;
             while(it.hasNext()){
                 block = it.next();
                 if(block.getType() == Material.BLACK_WOOL) {
                     it.remove();
+                    Bukkit.broadcastMessage("Black wool was caught in explosion");
                 }
                 else if(block.getType() == Material.BLUE_WOOL) {
                     it.remove();
