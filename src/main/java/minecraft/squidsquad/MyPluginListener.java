@@ -45,7 +45,7 @@ public class MyPluginListener implements Listener {
         item.setItemMeta(item_meta);
         return item;
     }
-    
+
     public MyPluginListener(MyPlugin myPlugin) {
         this.myPlugin = myPlugin;
     }
@@ -58,16 +58,16 @@ public class MyPluginListener implements Listener {
         event.setJoinMessage("Please welcome " + event.getPlayer().getName() + " to the server!");
         event.getPlayer().getInventory().addItem(makeUnbreakable(ExcaliPurr.excaliPurr()));
         event.getPlayer().getInventory().addItem(makeUnbreakable(new ItemStack(Material.DIAMOND_SWORD)));
-        event.getPlayer().getInventory().addItem(makeUnbreakable(new ItemStack(Material.POTION, 1, (short) 1642)));
+        //event.getPlayer().getInventory().addItem(makeUnbreakable(new ItemStack(Material.POTION, 1, (short) 1642)));
     }
-    
+
     @SuppressWarnings("deprecation")
 	@EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event)
     {
     	event.getPlayer().getInventory().addItem(ExcaliPurr.excaliPurr());
         event.getPlayer().getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
-        event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
+        //event.getPlayer().getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 1642));
     }
 
     @EventHandler
@@ -77,8 +77,8 @@ public class MyPluginListener implements Listener {
         Windspeed wind = myPlugin.wind;
         projectile.setVelocity(wind.applyWindToProjectile(initialVelocity));
     }
-    
-    @EventHandler 
+
+    @EventHandler
     public void onShoot(ProjectileHitEvent e){
     	if (e.getEntity() instanceof Arrow) {
     		Arrow arrow = (Arrow) e.getEntity();
@@ -170,9 +170,9 @@ public class MyPluginListener implements Listener {
                 }
             }
         }
-    } 
+    }
 
-    
+
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onCatSwordRightClick(PlayerInteractEntityEvent event) {
@@ -196,17 +196,17 @@ public class MyPluginListener implements Listener {
     			fw.detonate();
     	    	Cat kitty = (Cat) world.spawnEntity(loc, EntityType.CAT);
     			kitty.setOwner(event.getPlayer());
-    			//Bukkit.broadcastMessage(ChatColor.RED + "Magic!");	
+    			//Bukkit.broadcastMessage(ChatColor.RED + "Magic!");
     		}
     	}
     }
-    
+
     @SuppressWarnings("deprecation")
 	@EventHandler
     public void onCatSwordSwing(PlayerInteractEvent event) {
     	if (
-    		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr()) 
-    		&& 
+    		event.getPlayer().getItemInHand().equals(ExcaliPurr.excaliPurr())
+    		&&
     		event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
     	){
     		Snowball kittenball = event.getPlayer().launchProjectile(Snowball.class);
@@ -240,12 +240,12 @@ public class MyPluginListener implements Listener {
             creeper.ignite();
         }
     }
-    
+
     @EventHandler
     public void onKittenBallHitsCreeperOrGhast(ProjectileHitEvent e) {
     	if(
-    		e.getEntity() instanceof Snowball 
-    		&& 
+    		e.getEntity() instanceof Snowball
+    		&&
     		e.getEntity().isGlowing() == true
     	){
     		//Bukkit.broadcastMessage(ChatColor.GOLD + "Orb landed!");
@@ -259,7 +259,7 @@ public class MyPluginListener implements Listener {
     	    fw.detonate();
 			Ghast gary = (Ghast) world.spawnEntity(loc, EntityType.GHAST);
     		if (
-    			e.getHitEntity().getType().equals(EntityType.CREEPER) 
+    			e.getHitEntity().getType().equals(EntityType.CREEPER)
     			||
     			e.getHitEntity().getType().equals(EntityType.GHAST)
     		) {
