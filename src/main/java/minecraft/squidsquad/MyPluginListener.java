@@ -1,7 +1,7 @@
 package minecraft.squidsquad;
 
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -126,54 +126,57 @@ public class MyPluginListener implements Listener {
 
     public void onCreeperExplosion(EntityExplodeEvent e){
         if(e.getEntity() instanceof Creeper) {
-            for (Block block : new ArrayList<Block>(e.blockList())){
+            Iterator<Block> it = e.blockList().iterator();
+            Block block;
+            while(it.hasNext()){
+                block = it.next();
                 if(block.getType() == Material.BLACK_WOOL) {
-                    e.blockList().remove(block);
+                    it.remove();
                 }
-                if(block.getType() == Material.BLUE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.BLUE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.BROWN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.BROWN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.CYAN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.CYAN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.GRAY_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.GRAY_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.GREEN_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.GREEN_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIGHT_BLUE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIGHT_BLUE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIGHT_GRAY_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIGHT_GRAY_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.LIME_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.LIME_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.MAGENTA_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.MAGENTA_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.ORANGE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.ORANGE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.PINK_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.PINK_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.PURPLE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.PURPLE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.RED_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.RED_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.WHITE_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.WHITE_WOOL) {
+                    it.remove();
                 }
-                if(block.getType() == Material.YELLOW_WOOL) {
-                    e.blockList().remove(block);
+                else if(block.getType() == Material.YELLOW_WOOL) {
+                    it.remove();
                 }
             }
         }
